@@ -1503,6 +1503,7 @@ randomize
 rangehands
 raptorial
 rashguard
+rashy
 ratlike
 rayed
 razorbar
@@ -1845,6 +1846,8 @@ taxa
 tazer
 tazers
 tcha
+tearjerker
+tearjerkers
 techn
 technomancer
 technomancy
