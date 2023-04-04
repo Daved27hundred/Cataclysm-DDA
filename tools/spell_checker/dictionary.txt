@@ -51,6 +51,8 @@ airhorn
 airjack
 airsoft
 airworthy
+aketon
+aketons
 alamosaurus
 alate
 alates
@@ -80,6 +82,7 @@ alquerque
 altamente
 alternators
 alumentum
+aluminized
 amargasaurus
 ambusher
 amigara
@@ -554,6 +557,7 @@ compsognathus
 concavities
 concealability
 concealable
+concentrator
 concentrically
 concerningly
 condensor
@@ -1019,6 +1023,7 @@ flechettes
 fleshier
 fletched
 fletching
+flexibility
 flightworthy
 flim
 flintknapping
@@ -2723,6 +2728,7 @@ superpositional
 supersoldier
 supersoldiers
 suppurated
+surcoat
 survivalcraft
 survivalists
 susurrate
