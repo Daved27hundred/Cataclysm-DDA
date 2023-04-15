@@ -2683,7 +2683,6 @@ void monster::load( const JsonObject &data )
     data.read( "morale", morale );
     data.read( "hallucination", hallucination );
     data.read( "fish_population", fish_population );
-    data.read( "lifespan_end", lifespan_end );
     //for older saves convert summon time limit to lifespan end
     std::optional<time_duration> summon_time_limit;
     data.read( "summon_time_limit", summon_time_limit );
@@ -2788,8 +2787,6 @@ void monster::store( JsonOut &json ) const
     json.member( "biosignatures", biosignatures );
     json.member( "biosig_timer", biosig_timer );
     json.member( "udder_timer", udder_timer );
-
-    json.member( "lifespan_end", lifespan_end );
 
     if( horde_attraction > MHA_NULL && horde_attraction < NUM_MONSTER_HORDE_ATTRACTION ) {
         json.member( "horde_attraction", horde_attraction );
@@ -3012,13 +3009,6 @@ void item::io( Archive &archive )
 
     load_legacy_craft_data( archive, craft_data_ );
 
-    double float_damage = 0;
-    if( archive.read( "damage", float_damage ) ) {
-        damage_ = std::min( std::max( min_damage(),
-                                      static_cast<int>( float_damage * itype::damage_scale ) ),
-                            max_damage() );
-    }
-
     int note = 0;
     const bool note_read = archive.read( "note", note );
 
@@ -3231,7 +3221,14 @@ void item::deserialize( const JsonObject &data )
     }
 
     update_inherited_flags();
-    on_damage_changed();
+
+    // 2023-03-26 remove in 0.H, remnants of reinforcing
+    damage_ = std::clamp( damage_, 0, max_damage() );
+    degradation_ = std::clamp( degradation_, 0, max_damage() );
+
+    // 2023-03-26 remove in 0.H, accurizing is obsolete
+    faults.erase( STATIC( fault_id( "fault_gun_unaccurized" ) ) );
+    faults.erase( STATIC( fault_id( "fault_gun_damaged" ) ) );
 }
 
 void item::serialize( JsonOut &json ) const
@@ -3308,6 +3305,7 @@ void vehicle_part::deserialize( const JsonObject &data )
 
     data.read( "crew_id", crew_id );
     data.read( "items", items );
+    data.read( "tools", tools );
     data.read( "target_first_x", target.first.x );
     data.read( "target_first_y", target.first.y );
     data.read( "target_first_z", target.first.z );
@@ -3363,6 +3361,7 @@ void vehicle_part::serialize( JsonOut &json ) const
         json.member( "z_offset", precalc[0].z );
     }
     json.member( "items", items );
+    json.member( "tools", tools );
     if( target.first != tripoint_min ) {
         json.member( "target_first_x", target.first.x );
         json.member( "target_first_y", target.first.y );
@@ -3905,7 +3904,7 @@ void Creature::store( JsonOut &jsout ) const
     jsout.member( "last_updated", last_updated );
 
     jsout.member( "body", body );
-
+    jsout.member( "lifespan_end", lifespan_end );
     // fake is not stored, it's temporary anyway, only used to fire with a gun.
 }
 
@@ -3986,7 +3985,7 @@ void Creature::load( const JsonObject &jsin )
     jsin.read( "body", body );
 
     fake = false; // see Creature::load
-
+    jsin.read( "lifespan_end", lifespan_end );
     on_stat_change( "pain", pain );
 }
 

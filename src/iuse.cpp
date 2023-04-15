@@ -314,6 +314,7 @@ static const json_character_flag json_flag_ENHANCED_VISION( "ENHANCED_VISION" );
 static const json_character_flag json_flag_HYPEROPIC( "HYPEROPIC" );
 static const json_character_flag json_flag_MYOPIC( "MYOPIC" );
 static const json_character_flag json_flag_MYOPIC_IN_LIGHT( "MYOPIC_IN_LIGHT" );
+static const json_character_flag json_flag_PAIN_IMMUNE( "PAIN_IMMUNE" );
 
 static const mongroup_id GROUP_FISH( "GROUP_FISH" );
 
@@ -377,7 +378,6 @@ static const trait_id trait_MARLOSS_AVOID( "MARLOSS_AVOID" );
 static const trait_id trait_MARLOSS_BLUE( "MARLOSS_BLUE" );
 static const trait_id trait_MARLOSS_YELLOW( "MARLOSS_YELLOW" );
 static const trait_id trait_M_DEPENDENT( "M_DEPENDENT" );
-static const trait_id trait_NOPAIN( "NOPAIN" );
 static const trait_id trait_PSYCHOPATH( "PSYCHOPATH" );
 static const trait_id trait_PYROMANIA( "PYROMANIA" );
 static const trait_id trait_SPIRITUAL( "SPIRITUAL" );
@@ -769,7 +769,7 @@ std::optional<int> iuse::antiparasitic( Character *p, item *, bool, const tripoi
     if( p->has_effect( effect_tapeworm ) ) {
         p->remove_effect( effect_tapeworm );
         p->guts.mod_nutr( -1 ); // You just digested the tapeworm.
-        if( p->has_trait( trait_NOPAIN ) ) {
+        if( p->has_flag( json_flag_PAIN_IMMUNE ) ) {
             p->add_msg_if_player( m_good, _( "Your bowels clench as something inside them dies." ) );
         } else {
             p->add_msg_if_player( m_mixed, _( "Your bowels spasm painfully as something inside them dies." ) );
@@ -786,7 +786,7 @@ std::optional<int> iuse::antiparasitic( Character *p, item *, bool, const tripoi
     }
     if( p->has_effect( effect_brainworms ) ) {
         p->remove_effect( effect_brainworms );
-        if( p->has_trait( trait_NOPAIN ) ) {
+        if( p->has_flag( json_flag_PAIN_IMMUNE ) ) {
             p->add_msg_if_player( m_good, _( "The pressure inside your head feels better already." ) );
         } else {
             p->add_msg_if_player( m_mixed,
@@ -796,7 +796,7 @@ std::optional<int> iuse::antiparasitic( Character *p, item *, bool, const tripoi
     }
     if( p->has_effect( effect_paincysts ) ) {
         p->remove_effect( effect_paincysts );
-        if( p->has_trait( trait_NOPAIN ) ) {
+        if( p->has_flag( json_flag_PAIN_IMMUNE ) ) {
             p->add_msg_if_player( m_good, _( "The stiffness in your joints goes away." ) );
         } else {
             p->add_msg_if_player( m_good, _( "The pain in your joints goes away." ) );
@@ -4728,7 +4728,7 @@ std::optional<int> iuse::blood_draw( Character *p, item *it, bool, const tripoin
         acid.set_item_temperature( blood_temp );
         it->put_in( acid, item_pocket::pocket_type::CONTAINER );
         if( one_in( 3 ) ) {
-            if( it->inc_damage( damage_type::ACID ) ) {
+            if( it->inc_damage() ) {
                 p->add_msg_if_player( m_info, _( "…but acidic blood melts the %s, destroying it!" ),
                                       it->tname() );
                 p->i_rem( it );
@@ -5462,21 +5462,11 @@ std::optional<int> gun_repair( Character *p, item *, item_location &loc )
         p->add_msg_if_player( m_info, _( "You can't see to do that!" ) );
         return std::nullopt;
     }
-    if( fix.damage() <= fix.damage_floor( true ) ) {
+    if( fix.damage() <= fix.degradation() ) {
         const char *msg = fix.damage_level() > 0 ?
                           _( "You can't improve your %s any more, considering the degradation." ) :
                           _( "You can't improve your %s any more this way." );
         p->add_msg_if_player( m_info, msg, fix.tname() );
-        return std::nullopt;
-    }
-    if( fix.damage() <= fix.damage_floor( false ) && fix.damage_floor( true ) < 0 &&
-        p->get_skill_level( skill_mechanics ) < 8 ) {
-        const char *msg = fix.damage_level() > 0 ?
-                          _( "Your %s is in its best condition, considering the degradation." ) :
-                          _( "Your %s is already in peak condition." );
-        p->add_msg_if_player( m_info, msg, fix.tname() );
-        p->add_msg_if_player( m_info,
-                              _( "With a higher mechanics skill, you might be able to improve it." ) );
         return std::nullopt;
     }
     const std::string startdurability = fix.durability_indicator( true );
@@ -5484,18 +5474,7 @@ std::optional<int> gun_repair( Character *p, item *, item_location &loc )
     p->practice( skill_mechanics, 10 );
     p->moves -= to_moves<int>( 20_seconds );
 
-    if( fix.damage() <= 0 ) {
-        /** @EFFECT_MECHANICS >=8 allows accurizing ranged weapons */
-        fix.mod_damage( -itype::damage_scale );
-        p->add_msg_if_player( m_good, _( "You accurize your %s." ), fix.tname( 1, false ) );
-        return 1;
-    }
-
-    int dmg = fix.damage() + 1;
-    for( const int lvl = fix.damage_level(); lvl == fix.damage_level() && dmg != fix.damage(); ) {
-        dmg = fix.damage(); // break loop if clamped by degradation or no more repair needed
-        fix.mod_damage( -1 ); // scan for next damage indicator breakpoint, repairing that much damage
-    }
+    fix.mod_damage( -itype::damage_scale );
 
     const std::string msg = fix.damage_level() == 0
                             ? _( "You repair your %s completely!  ( %s-> %s)" )
