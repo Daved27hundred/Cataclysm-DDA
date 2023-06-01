@@ -130,6 +130,7 @@ static const std::unordered_map<std::string, vpart_bitflags> vpart_bitflag_map =
     { "RAIL", VPFLAG_RAIL },
     { "TURRET_CONTROLS", VPFLAG_TURRET_CONTROLS },
     { "ROOF", VPFLAG_ROOF },
+    { "CABLE_PORTS", VPFLAG_CABLE_PORTS },
 };
 
 static std::map<vpart_id, vpart_info> vpart_info_all;
@@ -605,7 +606,7 @@ static std::string get_looks_like( const vpart_info &vpi, const itype &it )
             if( !at->default_ammotype() ) {
                 continue;
             }
-            const auto at_weight = at->default_ammotype()->weight;
+            const units::mass at_weight = at->default_ammotype()->weight;
             if( 15_gram > at_weight && at_weight > 3_gram ) {
                 return true; // detects g80 and coil gun
             }
