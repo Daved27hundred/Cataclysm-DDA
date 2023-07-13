@@ -163,6 +163,7 @@
     "items": [
       { "group": "magazines", "prob": 2000 },
       { "group": "kids_books", "prob": 35 },
+      { "group": "stand_flyer", "prob": 100 },
       [ "recipe_augs", 20 ],
       [ "decoy_anarch", 50 ],
       { "group": "newspaper_recent", "prob": 200 },
@@ -902,6 +903,7 @@
       [ "steel_pan", 10 ],
       [ "teapot", 25 ],
       [ "kettle", 25 ],
+      [ "fuel_tin", 25 ],
       [ "fishing_hook_basic", 35 ],
       [ "spike", 30 ],
       [ "wire_barbed", 25 ],
@@ -2167,6 +2169,7 @@
       { "item": "chem_manganese_dioxide", "prob": 10, "charges-min": 100 },
       { "item": "chem_saltpetre", "prob": 10, "charges": [ 1, 50 ] },
       { "item": "chem_carbide", "prob": 10, "charges-min": 100 },
+      { "item": "chem_caco3", "prob": 10, "charges-min": 100 },
       { "item": "denat_alcohol", "prob": 6, "charges-min": 250 },
       { "item": "methed_alcohol", "prob": 4, "charges-min": 250 }
     ]
