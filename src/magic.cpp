@@ -270,6 +270,7 @@ void spell_type::load( const JsonObject &jo, const std::string_view )
     mandatory( jo, was_loaded, "name", name );
     mandatory( jo, was_loaded, "description", description );
     optional( jo, was_loaded, "skill", skill, skill_default );
+    optional( jo, was_loaded, "teachable", teachable, true );
     optional( jo, was_loaded, "components", spell_components, spell_components_default );
     optional( jo, was_loaded, "message", message, message_default );
     optional( jo, was_loaded, "sound_description", sound_description, sound_description_default );
@@ -466,6 +467,7 @@ void spell_type::serialize( JsonOut &json ) const
     json.member( "valid_targets", valid_targets, enum_bitset<spell_target> {} );
     json.member( "effect_str", effect_str, effect_str_default );
     json.member( "skill", skill, skill_default );
+    json.member( "teachable", teachable, true );
     json.member( "components", spell_components, spell_components_default );
     json.member( "message", message.translated(), message_default.translated() );
     json.member( "sound_description", sound_description.translated(),
@@ -1491,7 +1493,6 @@ int spell::get_temp_level_adjustment() const
     return temp_level_adjustment;
 }
 
-
 void spell::set_temp_level_adjustment( int adjustment )
 {
     temp_level_adjustment = adjustment;
@@ -1673,7 +1674,6 @@ void spell::cast_spell_effect( Creature &source, const tripoint &target ) const
                 this->casting_time( *caster ),
                 this->damage( source ) );
     }
-
 
     type->effect( *this, source, target );
 }

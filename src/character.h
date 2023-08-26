@@ -325,6 +325,8 @@ struct queued_eocs {
 
     queued_eocs &operator=( const queued_eocs &rhs ) {
         list = rhs.list;
+        // Why doesn't std::priority_queue have a clear() function.
+        queue = {};
         for( auto it = list.begin(), end = list.end(); it != end; ++it ) {
             queue.emplace( it );
         }
@@ -517,8 +519,7 @@ class Character : public Creature, public visitable
         ~Character() override;
 
         // initialize avatar and avatar mocks
-        void initialize();
-
+        void initialize( bool learn_recipes = true );
 
         Character *as_character() override {
             return this;
@@ -1420,6 +1421,26 @@ class Character : public Creature, public visitable
         void heal( const bodypart_id &healed, int dam );
         /** Heals all body parts for dam */
         void healall( int dam );
+        /**
+         * @return Skills of which this NPC has a higher level than the given player. In other
+         * words: skills this NPC could teach the player.
+         */
+        std::vector<skill_id> skills_offered_to( const Character &you ) const;
+        /**
+         * Proficiencies we know that the character doesn't
+         */
+        std::vector<proficiency_id> proficiencies_offered_to( const Character &guy ) const;
+        /**
+         * Martial art styles that we known, but the player p doesn't.
+         */
+        std::vector<matype_id> styles_offered_to( const Character &you ) const;
+        /**
+         * Spells that the NPC knows but that the player p doesn't.
+         * not const because get_spell isn't const and both this and p call it
+         */
+        std::vector<spell_id> spells_offered_to( const Character &you ) const;
+
+        int calc_spell_training_cost( bool knows, int difficulty, int level ) const;
 
         /** used for profession spawning and save migration for nested containers. remove after 0.F */
         void migrate_items_to_storage( bool disintegrate );
@@ -3460,7 +3481,6 @@ class Character : public Creature, public visitable
         void calculate_leak_level();
         /** Sets leak_level_dirty to true */
         void invalidate_leak_level_cache();
-
 
         /** Creates an auditory hallucination */
         void sound_hallu();

@@ -65,6 +65,8 @@ Use the `Home` key to return to the top.
       - [`missions`](#missions)
       - [`proficiencies`](#proficiencies)
       - [`items`](#items)
+      - [`age_lower`](#age_lower)
+      - [`age_upper`](#age_upper)
       - [`pets`](#pets)
       - [`vehicle`](#vehicle)
       - [`flags`](#flags)
@@ -1093,6 +1095,7 @@ mod = min( max, ( limb_score / denominator ) - subtract );
 | `dispersion_mod`             | (_optional_) Modifier to change firearm dispersion.
 | `activated_on_install`       | (_optional_) Auto-activates this bionic when installed.
 | `required_bionic`       | (_optional_) Bionic which is required to install this bionic, and which cannot be uninstalled if this bionic is installed
+| `give_mut_on_removal`         | (_optional_) A list of mutations/traits that are added when this bionic is uninstalled (for example a "blind" mutation if you removed bionic eyes after installation).
 
 ```JSON
 {
@@ -1138,6 +1141,20 @@ mod = min( max, ( limb_score / denominator ) - subtract );
     "react_cost": "10 kJ",
     "time": "1 s",
     "required_bionic": "bio_weight"
+  },
+  {
+    "type": "bionic",
+    "id": "afs_bio_skullgun",
+    "name": { "str": "Skullgun" },
+    "description": "Concealed in your head is a single shot 10mm pistol.  Activate the bionic to fire and reload the skullgun.",
+    "occupied_bodyparts": [ [ "head", 5 ] ],
+    "encumbrance": [ [ "head", 5 ] ],
+    "fake_weapon": "bio_skullgun_gun",
+    "flags": [ "BIONIC_GUN" ],
+    "stat_bonus": [ [ "INT", -4 ], [ "PER", -2 ] ],
+    "canceled_mutations": [ "INT_UP", "INT_UP_2", "INT_UP_3", "INT_UP_4", "INT_ALPHA", "SKULLGUN_STUPID" ],
+    "give_mut_on_removal": [ "SKULLGUN_STUPID" ],
+    "activated_close_ui": true
   }
 ```
 
@@ -1781,6 +1798,18 @@ Example:
 
 This gives the player pants, two rocks, a t-shirt with the snippet id "allyourbase" (giving it a special description), socks and (depending on the gender) briefs or panties.
 
+#### `age_lower`
+
+(optional, int)
+The lowest age that a character with this profession can generate with. 
+This places no limits on manual input, only on random generation (i.e. Play Now!). Defaults to 21.
+
+#### `age_upper`
+
+(optional, int)
+The highest age that a character with this profession can generate with.
+This places no limits on manual input, only on random generation (i.e. Play Now!). Defaults to 55.
+
 #### `pets`
 
 (optional, array of string mtype_ids )
@@ -1879,7 +1908,7 @@ Crafting recipes are defined as a JSON object with the following fields:
 "contained": true, // Boolean value which defines if the resulting item comes in its designated container. Automatically set to true if any container is defined in the recipe. 
 "container": "jar_glass_sealed", //The resulting item will be contained by the item set here, overrides default container.
 "batch_time_factors": [25, 15], // Optional factors for batch crafting time reduction. First number specifies maximum crafting time reduction as percentage, and the second number the minimal batch size to reach that number. In this example given batch size of 20 the last 6 crafts will take only 3750 time units.
-"count": 2,                  // Number of resulting items/charges per craft. Uses default charges if not set. If a container is set, this is the amount that gets put inside it, capped by container capacity.
+"charges": 2,                // Number of resulting items/charges per craft. Uses default charges if not set. If a container is set, this is the amount that gets put inside it, capped by container capacity.
 "result_mult": 2,            // Multiplier for resulting items. Also multiplies container items.
 "flags": [                   // A set of strings describing boolean features of the recipe
   "BLIND_EASY",
@@ -2550,12 +2579,34 @@ it is present to help catch errors.
 
 ### Skills
 
-```C++
-"id" : "smg",  // Unique ID. Must be one continuous word, use underscores if necessary
-"name" : "submachine guns",  // In-game name displayed
-"description" : "Your skill with submachine guns and machine pistols. Halfway between a pistol and an assault rifle, these weapons fire and reload quickly, and may fire in bursts, but they are not very accurate.", // In-game description
-"tags" : ["gun_type"]  // Special flags (default: none)
+```json
+{
+  "type": "skill",
+  "id": "smg",
+  "name": { "str": "submachine guns" },
+  "description": "Comprised of an automatic rifle carbine designed to fire a pistol cartridge, submachine guns can reload and fire quickly, sometimes in bursts, but they are relatively inaccurate and may be prone to mechanical failures.",
+  "tags": [ "combat_skill" ],
+  "time_to_attack": { "min_time": 20, "base_time": 30, "time_reduction_per_level": 1 },
+  "display_category": "display_ranged",
+  "sort_rank": 11000,
+  "teachable": true,
+  "companion_skill_practice": [ { "skill": "hunting", "weight": 25 } ]
+}
 ```
+
+| Field                      | Purpose |
+| ---                        | ---     |
+| `name`                     | Name of the skill as displayed in the the character info screen. |
+| `description`              | Description of the skill as displayed in the the character info screen. |
+| `tags`                     | Identifies special cases. Currently valid tags are: "combat_skill" and "contextual_skill". |
+| `time_to_attack`           | Object used to calculate the movecost for firing a gun. |
+| `display_category`         | Category in the character info screen where this skill is displayed. |
+| `sort_rank`                | Order in which the skill is shown. |
+| `teachable`                | Whether it's possible to teach this skill between characters. (Default = true) |
+| `companion_skill_practice` | Determines the priority of this skill within a mision skill category when an NPC gains experience from a companion mission. |
+| `companion_combat_rank_factor`   | _(int)_ Affects an NPC's rank when determining the success rate for combat missions. |
+| `companion_survival_rank_factor` | _(int)_ Affects an NPC's rank when determining the success rate for survival missions. |
+| `companion_industry_rank_factor` | _(int)_ Affects an NPC's rank when determining the success rate for industry missions. |
 
 ### Speed Description
 
@@ -5316,36 +5367,36 @@ A list of mission ids that will be started and assigned to the player at the sta
 ## `start_of_cataclysm`
 (optional, object with optional members "hour", "day", "season" and "year")
 
-Allows customization of cataclysm start date. If `start_of_cataclysm` is not set the corresponding default values are used instead - 0 hour, 0 day (which is day 1), Spring season, 1 year.
+Allows customization of cataclysm start date. If `start_of_cataclysm` is not set the corresponding default values are used instead - `Year 1, Spring, Day 61, 00:00:00`. Can be changed in new character creation screen.
 
 ```C++
-"start_of_cataclysm": { "hour": "random", "day": 10, "season": "winter", "year": 1 }
+"start_of_cataclysm": { "hour": 7, "day": 10, "season": "winter", "year": 1 }
 ```
 
  Identifier            | Description
 ---                    | ---
-`hour`                 | (optional, integer or `random` string) Hour of the day. Default value is 0. String `random` randomizes 0-23.
-`day`                  | (optional, integer or `random` string) Day of the season. Default value is 0 (which is day 1). String `random` randomizes 0-season length.
-`season`               | (optional, integer or `random` string) Season of the year. Default value is `SPRING`. String `random` randomizes to one of 4 season.
-`year`                 | (optional, integer or `random` string) Year. Default value is 1. String `random` randomizes 1-11.
+`hour`                 | (optional, integer) Hour of the day. Default value is 0.
+`day`                  | (optional, integer) Day of the season. Default value is 61.
+`season`               | (optional, integer) Season of the year. Default value is `spring`.
+`year`                 | (optional, integer) Year. Default value is 1.
 
 ## `start_of_game`
 (optional, object with optional members "hour", "day", "season" and "year")
 
-Allows customization of game start date. If `start_of_game` is not set the corresponding default values are used instead - random hour (0-23), 0 day (which is day 1), Spring season, 1 year.
+Allows customization of game start date. If `start_of_game` is not set the corresponding default values are used instead - `Year 1, Spring, Day 61, 08:00:00`. Can be changed in new character creation screen.
 
-If the scenario game start date is before the scenario cataclysm start date then the scenario game start would be automatically set to scenario cataclysm start date.
+**Attention**: Game start date is automatically adjusted, so it is not before the cataclysm start date.
 
 ```C++
-"start_of_game": { "hour": "random", "day": "random", "season": "winter", "year": 2 }
+"start_of_game": { "hour": 8, "day": 16, "season": "winter", "year": 2 }
 ```
 
  Identifier            | Description
 ---                    | ---
-`hour`                 | (optional, integer or `random` string) Hour of the day. Default value is 0. String `random` randomizes 0-23.
-`day`                  | (optional, integer or `random` string) Day of the season. Default value is 0 (which is day 1). String `random` randomizes 0-season length.
-`season`               | (optional, integer or `random` string) Season of the year. Default value is `SPRING`. String `random` randomizes to one of 4 season.
-`year`                 | (optional, integer or `random` string) Year. Default value is 1. String `random` randomizes 1-11.
+`hour`                 | (optional, integer) Hour of the day. Default value is 8.
+`day`                  | (optional, integer) Day of the season. Default value is 61.
+`season`               | (optional, integer) Season of the year. Default value is `spring`.
+`year`                 | (optional, integer) Year. Default value is 1.
 
 # Starting locations
 
@@ -5394,6 +5445,10 @@ If it is an object - it has following attributes:
 * `TYPE` - The provided string must completely match the base type id of the
   overmap terrain id, which means that suffixes for rotation and linear terrain
   types are ignored.
+ 
+* `SUBTYPE` - The provided string must completely match the base type id of the
+  overmap terrain id as well as the linear terrain type ie "road_curved" will match
+  "road_ne", "road_es", "road_sw" and "road_wn".
 
 * `PREFIX` - The provided string must be a complete prefix (with additional
   parts delimited by an underscore) of the overmap terrain id. For example,
