@@ -4251,13 +4251,13 @@ double vehicle::lift_thrust_of_rotorcraft( const bool fuelled, const bool safe )
         rotor_area_in_feet += ( M_PI / 4 ) * std::pow( rotor_diameter_in_feet, 2 );
     }
     // take off 15 % due to the imaginary tail rotor power.
-    double engine_power_in_hp = 1.34102 * units::to_milliwatt( total_power( fuelled, safe ) );
+    double engine_power_in_hp = 0.00134102 * units::to_watt( total_power( fuelled, safe ) );
     // lift_thrust in lbthrust
     double lift_thrust = ( 8.8658 * std::pow( engine_power_in_hp / rotor_area_in_feet,
                            -0.3107 ) ) * engine_power_in_hp;
     add_msg_debug( debugmode::DF_VEHICLE,
                    "lift thrust in lbs of %s = %f, rotor area in feet : %d, engine power in hp %f, thrust in newtons : %f",
-                   name, lift_thrust, rotor_area_in_feet, engine_power_in_hp, engine_power_in_hp * 4.45 );
+                   name, lift_thrust, rotor_area_in_feet, engine_power_in_hp, lift_thrust * 4.45 );
     // convert to newtons.
     return lift_thrust * 4.45;
 }
@@ -4342,6 +4342,40 @@ bool vehicle::is_watercraft() const
 bool vehicle::is_in_water( bool deep_water ) const
 {
     return deep_water ? in_deep_water : in_water;
+}
+
+bool vehicle::can_control_in_air( const Character &pc ) const
+{
+    for( const int index : control_req_parts ) {
+        for( const proficiency_id prof : parts[index].info().control_air.proficiencies ) {
+            if( !pc.has_proficiency( prof ) ) {
+                return false;
+            }
+        }
+        for( const std::pair<string_id<Skill>, int> &skill : parts[index].info().control_air.skills ) {
+            if( pc.get_skill_level( skill.first ) < skill.second ) {
+                return false;
+            }
+        }
+    }
+    return true;
+}
+
+bool vehicle::can_control_on_land( const Character &pc ) const
+{
+    for( const int index : control_req_parts ) {
+        for( const proficiency_id prof : parts[index].info().control_land.proficiencies ) {
+            if( !pc.has_proficiency( prof ) ) {
+                return false;
+            }
+        }
+        for( const std::pair<string_id<Skill>, int> &skill : parts[index].info().control_land.skills ) {
+            if( pc.get_skill_level( skill.first ) < skill.second ) {
+                return false;
+            }
+        }
+    }
+    return true;
 }
 
 double vehicle::coeff_water_drag() const
@@ -6027,6 +6061,7 @@ void vehicle::refresh( const bool remove_fakes )
     planters.clear();
     accessories.clear();
     cable_ports.clear();
+    control_req_parts.clear();
 
     alternator_load = 0;
     extra_drag = 0_W;
@@ -6184,6 +6219,9 @@ void vehicle::refresh( const bool remove_fakes )
         }
         if( vpi.has_flag( VPFLAG_CABLE_PORTS ) || vpi.has_flag( VPFLAG_APPLIANCE ) ) {
             cable_ports.push_back( p );
+        }
+        if( vpi.has_control_req() ) {
+            control_req_parts.push_back( p );
         }
     }
 

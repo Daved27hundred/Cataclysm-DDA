@@ -357,6 +357,17 @@ int talker_character_const::get_spell_exp( const spell_id &spell_name ) const
     return me_chr_const->magic->get_spell( spell_name ).xp();
 }
 
+int talker_character_const::get_spell_count( const trait_id &school ) const
+{
+    int count = 0;
+    for( const spell *sp : me_chr_const->magic->get_spells() ) {
+        if( school.is_null() || sp->spell_class() == school ) {
+            count++;
+        }
+    }
+    return count;
+}
+
 void talker_character::set_spell_level( const spell_id &sp, int new_level )
 {
     me_chr->magic->set_spell_level( sp, new_level, me_chr );
@@ -908,22 +919,30 @@ void talker_character::remove_bionic( const bionic_id &old_bionic )
     }
 }
 
-std::vector<skill_id> talker_character::skills_teacheable() const
+std::vector<skill_id> talker_character_const::skills_teacheable() const
 {
-    std::vector<skill_id> ret;
-    for( const auto &pair : *me_chr->_skills ) {
-        const skill_id &id = pair.first;
-        if( pair.second.level() > 0 && id->is_teachable() ) {
-            ret.push_back( id );
-        }
-    }
-    return ret;
+    return me_chr_const->skills_offered_to( nullptr );
+}
+
+std::vector<proficiency_id> talker_character_const::proficiencies_teacheable() const
+{
+    return me_chr_const->proficiencies_offered_to( nullptr );
+}
+
+std::vector<matype_id> talker_character_const::styles_teacheable() const
+{
+    return me_chr_const->styles_offered_to( nullptr );
+}
+
+std::vector<spell_id> talker_character_const::spells_teacheable() const
+{
+    return me_chr_const->spells_offered_to( nullptr );
 }
 
 std::vector<skill_id> talker_character_const::skills_offered_to( const talker &student ) const
 {
     if( student.get_character() ) {
-        return me_chr_const->skills_offered_to( *student.get_character() );
+        return me_chr_const->skills_offered_to( student.get_character() );
     } else {
         return {};
     }
@@ -956,7 +975,7 @@ std::vector<proficiency_id> talker_character_const::proficiencies_offered_to(
     const talker &student ) const
 {
     if( student.get_character() ) {
-        return me_chr_const->proficiencies_offered_to( *student.get_character() );
+        return me_chr_const->proficiencies_offered_to( student.get_character() );
     } else {
         return {};
     }
@@ -990,7 +1009,7 @@ std::string talker_character_const::proficiency_training_text( const talker &stu
 std::vector<matype_id> talker_character_const::styles_offered_to( const talker &student ) const
 {
     if( student.get_character() ) {
-        return me_chr_const->styles_offered_to( *student.get_character() );
+        return me_chr_const->styles_offered_to( student.get_character() );
     } else {
         return {};
     }
@@ -1012,7 +1031,7 @@ std::string talker_character_const::style_training_text( const talker &student,
 std::vector<spell_id> talker_character_const::spells_offered_to( talker &student ) const
 {
     if( student.get_character() ) {
-        return me_chr_const->spells_offered_to( *student.get_character() );
+        return me_chr_const->spells_offered_to( student.get_character() );
     } else {
         return {};
     }
@@ -1029,7 +1048,9 @@ std::string talker_character_const::spell_training_text( talker &student, const 
     const int cost = me_chr_const->calc_spell_training_cost( knows, temp_spell.get_difficulty( *pupil ),
                      temp_spell.get_level() );
     std::string text;
-    if( knows ) {
+    if( cost == 0 && ( !me_chr_const->is_npc() || me_chr_const->as_npc()->is_ally( *pupil ) ) ) {
+        text = temp_spell.name();
+    } else if( knows ) {
         text = string_format( _( "%s: 1 hour lesson (cost %s)" ), temp_spell.name(),
                               format_money( cost ) );
     } else {
@@ -1039,10 +1060,25 @@ std::string talker_character_const::spell_training_text( talker &student, const 
     return text;
 }
 
-std::string talker_character::skill_seminar_text( const skill_id &s ) const
+std::string talker_character_const::skill_seminar_text( const skill_id &s ) const
 {
-    int lvl = me_chr->get_skill_level( s );
+    int lvl = me_chr_const->get_skill_level( s );
     return string_format( "%s (%d)", s.obj().name(), lvl );
+}
+
+std::string talker_character_const::proficiency_seminar_text( const proficiency_id &p ) const
+{
+    return p->name();
+}
+
+std::string talker_character_const::style_seminar_text( const matype_id &m ) const
+{
+    return m->name.translated();
+}
+
+std::string talker_character_const::spell_seminar_text( const spell_id &s ) const
+{
+    return s->name.translated();
 }
 
 std::vector<bodypart_id> talker_character::get_all_body_parts( bool all, bool main_only ) const
