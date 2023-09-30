@@ -12,6 +12,7 @@
 #include "character.h"
 #include "color.h"
 #include "crafting.h"
+#include "creature_tracker.h"
 #include "debug.h"
 #include "enums.h"
 #include "flag.h"
@@ -1355,7 +1356,7 @@ ret_val<item_pocket::contain_code> item_pocket::is_compatible( const item &it ) 
     if( !data->ammo_restriction.empty() ) {
         if( !it.is_ammo() ) {
             return ret_val<item_pocket::contain_code>::make_failure(
-                       contain_code::ERR_AMMO, _( "item is not an ammo" ) );
+                       contain_code::ERR_AMMO, _( "item is not ammunition" ) );
         }
 
         const auto ammo_restriction_iter = data->ammo_restriction.find( it.ammo_type() );
@@ -1388,7 +1389,7 @@ ret_val<item_pocket::contain_code> item_pocket::is_compatible( const item &it ) 
         !it.is_frozen_liquid() && data->max_item_volume &&
         !charges_per_volume_recursive( *data->max_item_volume, it ) ) {
         return ret_val<item_pocket::contain_code>::make_failure(
-                   contain_code::ERR_TOO_BIG, _( "item too big" ) );
+                   contain_code::ERR_TOO_BIG, _( "item is too big" ) );
     }
     if( it.length() > data->max_item_length ) {
         return ret_val<item_pocket::contain_code>::make_failure(
@@ -1487,7 +1488,7 @@ ret_val<item_pocket::contain_code> item_pocket::_can_contain( const item &it,
         }
         if( it.volume() > volume_capacity() ) {
             return ret_val<item_pocket::contain_code>::make_failure(
-                       contain_code::ERR_TOO_BIG, _( "item too big" ) );
+                       contain_code::ERR_TOO_BIG, _( "item is too big" ) );
         }
         return ret_val<item_pocket::contain_code>::make_success();
     }
@@ -1556,7 +1557,7 @@ ret_val<item_pocket::contain_code> item_pocket::_can_contain( const item &it,
     units::volume volume = it.volume();
     if( volume > volume_capacity() ) {
         return ret_val<item_pocket::contain_code>::make_failure(
-                   contain_code::ERR_TOO_BIG, _( "item too big" ) );
+                   contain_code::ERR_TOO_BIG, _( "item is too big" ) );
     }
 
     int fallback_capacity = it.count_by_charges() ? it.charges : copies_remaining;
@@ -1734,24 +1735,32 @@ std::optional<item> item_pocket::remove_item( const item_location &it )
 }
 
 static void move_to_parent_pocket_recursive( const tripoint &pos, item &it,
-        const item_location &loc )
+        const item_location &loc, Character *carrier )
 {
     if( loc ) {
         item_pocket *parent_pocket = loc.parent_pocket();
         if( parent_pocket && parent_pocket->can_contain( it ).success() ) {
-            add_msg( m_bad, _( "Your %1$s falls into your %2$s." ), it.display_name(),
-                     loc.parent_item()->label( 1 ) );
+            if( carrier ) {
+                carrier->add_msg_if_player( m_bad, _( "Your %1$s falls into your %2$s." ),
+                                            it.display_name(), loc.parent_item()->label( 1 ) );
+            }
             parent_pocket->insert_item( it );
             return;
         }
         if( loc.where() == item_location::type::container ) {
-            move_to_parent_pocket_recursive( pos, it, loc.parent_item() );
+            move_to_parent_pocket_recursive( pos, it, loc.parent_item(), carrier );
             return;
         }
     }
 
     map &here = get_map();
-    add_msg( m_bad, _( "Your %s falls to the ground." ), it.display_name() );
+    if( carrier ) {
+        carrier->invalidate_weight_carried_cache();
+        carrier->add_msg_player_or_npc( m_bad, _( "Your %s falls to the ground." ),
+                                        _( "<npcname>'s %s falls to the ground." ), it.display_name() );
+    } else {
+        add_msg_if_player_sees( pos, m_bad, _( "The %s falls to the ground." ), it.display_name() );
+    }
     here.add_item_or_charges( pos, it );
 }
 
@@ -1776,6 +1785,9 @@ void item_pocket::overflow( const tripoint &pos, const item_location &loc )
         }
     }
 
+    Character *carrier = loc.where_recursive() != item_location::type::character ? nullptr :
+                         get_creature_tracker().creature_at<Character>( loc.position() );
+
     // first remove items that shouldn't be in there anyway
     std::unordered_map<itype_id, bool> contained_type_validity;
     for( auto iter = contents.begin(); iter != contents.end(); ) {
@@ -1785,7 +1797,7 @@ void item_pocket::overflow( const tripoint &pos, const item_location &loc )
             if( !is_type( pocket_type::MIGRATION ) && can_contain( *iter, true ).success() ) {
                 ++iter;
             } else {
-                move_to_parent_pocket_recursive( pos, *iter, loc );
+                move_to_parent_pocket_recursive( pos, *iter, loc, carrier );
                 iter = contents.erase( iter );
             }
             continue;
@@ -1800,7 +1812,7 @@ void item_pocket::overflow( const tripoint &pos, const item_location &loc )
         if( cont_copy_type.first->second ) {
             ++iter;
         } else {
-            move_to_parent_pocket_recursive( pos, *iter, loc );
+            move_to_parent_pocket_recursive( pos, *iter, loc, carrier );
             iter = contents.erase( iter );
         }
     }
@@ -1827,7 +1839,7 @@ void item_pocket::overflow( const tripoint &pos, const item_location &loc )
             if( overflow_count > 0 ) {
                 ammo.charges -= overflow_count;
                 item dropped_ammo( ammo.typeId(), ammo.birthday(), overflow_count );
-                move_to_parent_pocket_recursive( pos, *iter, loc );
+                move_to_parent_pocket_recursive( pos, *iter, loc, carrier );
                 total_qty -= overflow_count;
             }
             if( ammo.count() == 0 ) {
@@ -1846,7 +1858,7 @@ void item_pocket::overflow( const tripoint &pos, const item_location &loc )
             return left.volume() > right.volume();
         } );
         while( remaining_volume() < 0_ml && !contents.empty() ) {
-            move_to_parent_pocket_recursive( pos, contents.front(), loc );
+            move_to_parent_pocket_recursive( pos, contents.front(), loc, carrier );
             contents.pop_front();
         }
     }
@@ -1855,7 +1867,7 @@ void item_pocket::overflow( const tripoint &pos, const item_location &loc )
             return left.weight() > right.weight();
         } );
         while( remaining_weight() < 0_gram && !contents.empty() ) {
-            move_to_parent_pocket_recursive( pos, contents.front(), loc );
+            move_to_parent_pocket_recursive( pos, contents.front(), loc, carrier );
             contents.pop_front();
         }
     }
@@ -1969,8 +1981,11 @@ void item_pocket::leak( map &here, Character *carrier, const tripoint &pos,
                 iter->unset_flag( flag_FROM_FROZEN_LIQUID );
                 iter->on_drop( pos );
                 here.add_item_or_charges( pos, *iter );
-                carrier->add_msg_if_player( _( "Liquid leaked out from the %s and dripped onto the ground!" ),
-                                            this->get_name() );
+                if( carrier != nullptr ) {
+                    carrier->invalidate_weight_carried_cache();
+                    carrier->add_msg_if_player( _( "Liquid leaked out from the %s and dripped onto the ground!" ),
+                                                this->get_name() );
+                }
             }
             iter = contents.erase( iter );
         } else {

@@ -2605,7 +2605,7 @@ void item::food_info( const item *food_item, std::vector<iteminfo> &info,
 
     ///\EFFECT_SURVIVAL >=3 allows detection of poisonous food
     if( food_item->has_flag( flag_HIDDEN_POISON ) &&
-        player_character.get_skill_level( skill_survival ) >= 3 &&
+        player_character.get_greater_skill_or_knowledge_level( skill_survival ) >= 3 &&
         parts->test( iteminfo_parts::FOOD_POISON ) ) {
         info.emplace_back( "DESCRIPTION",
                            _( "* On closer inspection, this appears to be "
@@ -2614,7 +2614,7 @@ void item::food_info( const item *food_item, std::vector<iteminfo> &info,
 
     ///\EFFECT_SURVIVAL >=5 allows detection of hallucinogenic food
     if( food_item->has_flag( flag_HIDDEN_HALLU ) &&
-        player_character.get_skill_level( skill_survival ) >= 5 &&
+        player_character.get_greater_skill_or_knowledge_level( skill_survival ) >= 5 &&
         parts->test( iteminfo_parts::FOOD_HALLUCINOGENIC ) ) {
         info.emplace_back( "DESCRIPTION",
                            _( "* On closer inspection, this appears to be "
@@ -2652,7 +2652,7 @@ void item::rot_info( const item *const food_item, std::vector<iteminfo> &info,
                                   "tasteless</bad>.  It will rot quickly if thawed again." ) );
         }
         if( food_item->has_flag( flag_NO_PARASITES ) &&
-            player_character.get_skill_level( skill_cooking ) >= 3 ) {
+            player_character.get_greater_skill_or_knowledge_level( skill_cooking ) >= 3 ) {
             info.emplace_back( "DESCRIPTION",
                                _( "* It seems that deep freezing <good>killed all "
                                   "parasites</good>." ) );
@@ -6352,7 +6352,6 @@ void item::on_pickup( Character &p )
     contents.on_pickup( p, this );
 
     p.flag_encumbrance();
-    p.invalidate_weight_carried_cache();
     p.on_item_acquire( *this );
 }
 
@@ -6492,10 +6491,12 @@ std::string item::tname( unsigned int quantity, bool with_prefix, unsigned int t
     // for portions of string that have <color_ etc in them, this aims to truncate the whole string correctly
     unsigned int truncate_override = 0;
 
+    const std::string item_health_option = get_option<std::string>( "ITEM_HEALTH" );
+    const bool show_bars  = item_health_option == "both" || item_health_option == "bars";
     if( ( damage() != 0 || ( degradation() > 0 && degradation() >= max_damage() / 5 ) ||
-          ( get_option<bool>( "ITEM_HEALTH_BAR" ) && is_armor() ) ) && !is_null() && with_prefix ) {
+          ( show_bars  && is_armor() ) ) && !is_null() && with_prefix ) {
         damtext += durability_indicator();
-        if( get_option<bool>( "ITEM_HEALTH_BAR" ) ) {
+        if( show_bars ) {
             // get the utf8 width of the tags
             truncate_override = utf8_width( damtext, false ) - utf8_width( damtext, true );
         }
@@ -6616,10 +6617,11 @@ std::string item::tname( unsigned int quantity, bool with_prefix, unsigned int t
     Character &player_character = get_player_character();
     std::string tagtext;
     if( is_food() ) {
-        if( has_flag( flag_HIDDEN_POISON ) && player_character.get_skill_level( skill_survival ) >= 3 ) {
+        if( has_flag( flag_HIDDEN_POISON ) &&
+            player_character.get_greater_skill_or_knowledge_level( skill_survival ) >= 3 ) {
             tagtext += _( " (poisonous)" );
         } else if( has_flag( flag_HIDDEN_HALLU ) &&
-                   player_character.get_skill_level( skill_survival ) >= 5 ) {
+                   player_character.get_greater_skill_or_knowledge_level( skill_survival ) >= 5 ) {
             tagtext += _( " (hallucinogenic)" );
         }
     }
@@ -8934,35 +8936,62 @@ std::string item::damage_indicator() const
 
 std::string item::durability_indicator( bool include_intact ) const
 {
-    std::string outputstring;
-
+    const std::string item_health_option = get_option<std::string>( "ITEM_HEALTH" );
+    const bool show_bars_only = item_health_option == "bars";
+    const bool show_description_only = item_health_option == "descriptions";
+    const bool show_both = item_health_option == "both";
+    const bool show_bars = show_both || show_bars_only;
+    const bool show_description = show_both || show_description_only;
+    std::string bars;
+    std::string description;
+    if( show_bars ) {
+        bars = damage_indicator() + degradation_symbol() + "\u00A0";
+    }
+    if( damage() < 0 ) {
+        if( show_description ) {
+            if( is_gun() ) {
+                description = pgettext( "damage adjective", "accurized " );
+            } else {
+                description = pgettext( "damage adjective", "reinforced " );
+            }
+        }
+        if( show_bars_only ) {
+            return bars;
+        }
+        if( show_description_only ) {
+            return description;
+        }
+        return bars + description;
+    }
     if( has_flag( flag_CORPSE ) ) {
         if( damage() > 0 ) {
             switch( damage_level() ) {
                 case 1:
-                    outputstring = pgettext( "damage adjective", "bruised " );
-                    break;
+                    return pgettext( "damage adjective", "bruised " );
                 case 2:
-                    outputstring = pgettext( "damage adjective", "damaged " );
-                    break;
+                    return pgettext( "damage adjective", "damaged " );
                 case 3:
-                    outputstring = pgettext( "damage adjective", "mangled " );
-                    break;
+                    return pgettext( "damage adjective", "mangled " );
                 default:
-                    outputstring = pgettext( "damage adjective", "pulped " );
-                    break;
+                    return pgettext( "damage adjective", "pulped " );
             }
         }
-    } else if( get_option<bool>( "ITEM_HEALTH_BAR" ) ) {
-        outputstring = damage_indicator() + degradation_symbol() + "\u00A0";
-    } else {
-        outputstring = string_format( "%s ", get_base_material().dmg_adj( damage_level() ) );
-        if( include_intact && outputstring == " " ) {
-            outputstring = _( "fully intact " );
+    }
+    if( show_bars_only ) {
+        return bars;
+    }
+    description = string_format( "%s ", get_base_material().dmg_adj( damage_level() ) );
+    if( description == " " ) {
+        if( include_intact ) {
+            description = _( "fully intact " );
+        } else {
+            description = "";
         }
     }
-
-    return outputstring;
+    if( show_description_only ) {
+        return description;
+    }
+    return bars + description;
 }
 
 const std::set<itype_id> &item::repaired_with() const
@@ -9227,6 +9256,11 @@ const itype_variant_data &item::itype_variant() const
 void item::set_itype_variant( const std::string &variant )
 {
     if( variant.empty() || type->variants.empty() ) {
+        return;
+    }
+
+    if( variant == "<any>" ) {
+        select_itype_variant();
         return;
     }
 
@@ -9945,7 +9979,7 @@ ret_val<void> item::can_contain( const item &it, int &copies_remaining, const bo
                          this == parent_it.get_item() ) ) {
         // does the set of all sets contain itself?
         // or does this already contain it?
-        return ret_val<void>::make_failure();
+        return ret_val<void>::make_failure( "can't put a container into itself" );
     }
     if( nested && !this->is_container() ) {
         return ret_val<void>::make_failure();
@@ -9993,27 +10027,27 @@ ret_val<void> item::can_contain( const item &it, int &copies_remaining, const bo
            contents.can_contain( it, copies_remaining, ignore_pkt_settings, remaining_parent_volume );
 }
 
-bool item::can_contain( const itype &tp ) const
+ret_val<void> item::can_contain( const itype &tp ) const
 {
-    return can_contain( item( &tp ) ).success();
+    return can_contain( item( &tp ) );
 }
 
-bool item::can_contain_partial( const item &it ) const
+ret_val<void> item::can_contain_partial( const item &it ) const
 {
     item i_copy = it;
     if( i_copy.count_by_charges() ) {
         i_copy.charges = 1;
     }
-    return can_contain( i_copy ).success();
+    return can_contain( i_copy );
 }
 
-bool item::can_contain_partial_directly( const item &it ) const
+ret_val<void> item::can_contain_partial_directly( const item &it ) const
 {
     item i_copy = it;
     if( i_copy.count_by_charges() ) {
         i_copy.charges = 1;
     }
-    return can_contain( i_copy, false, false, true, item_location(), 10000000_ml, false ).success();
+    return can_contain( i_copy, false, false, true, item_location(), 10000000_ml, false );
 }
 
 std::pair<item_location, item_pocket *> item::best_pocket( const item &it, item_location &this_loc,
@@ -10702,6 +10736,9 @@ int item::ammo_consume( int qty, const tripoint &pos, Character *carrier )
     // Consume charges loaded in the item or its magazines
     if( is_magazine() || uses_magazine() ) {
         qty -= contents.ammo_consume( qty, pos );
+        if( ammo_capacity( ammo_battery ) == 0 && carrier != nullptr ) {
+            carrier->invalidate_weight_carried_cache();
+        }
     }
 
     // Dirty fix: activating a container of meds leads here, and used to use up all of the charges.
@@ -10720,7 +10757,8 @@ int item::ammo_consume( int qty, const tripoint &pos, Character *carrier )
 
     // Modded tools can consume UPS/bionic energy instead of ammo.
     // Guns handle energy in energy_consume()
-    if( carrier != nullptr && type->tool ) {
+    if( carrier != nullptr && type->tool &&
+        ( has_flag( flag_USE_UPS ) || has_flag( flag_USES_BIONIC_POWER ) ) ) {
         units::energy wanted_energy = units::from_kilojoule( qty );
 
         if( has_flag( flag_USE_UPS ) ) {
@@ -11750,7 +11788,7 @@ int item::get_remaining_capacity_for_liquid( const item &liquid, bool allow_buck
 
     int remaining_capacity = 0;
 
-    if( can_contain_partial( liquid ) ) {
+    if( can_contain_partial( liquid ).success() ) {
         if( !contents.can_contain_liquid( allow_bucket ) ) {
             return error( string_format( _( "That %s must be on the ground or held to hold contents!" ),
                                          tname() ) );
@@ -12022,7 +12060,6 @@ int item::fill_with( const item &contained, const int amount,
                   contained_item.typeId().str(), contained_item.charges, typeId().str() );
     }
     on_contents_changed();
-    get_avatar().invalidate_weight_carried_cache();
     return num_contained;
 }
 
@@ -14207,8 +14244,6 @@ bool item::on_drop( const tripoint &pos, map &m )
     // set variable storing information of character dropping item
     dropped_char_stats.throwing = player_character.get_skill_level( skill_throw );
 
-    player_character.flag_encumbrance();
-    player_character.invalidate_weight_carried_cache();
     return type->drop_action && type->drop_action.call( &player_character, *this, pos );
 }
 
