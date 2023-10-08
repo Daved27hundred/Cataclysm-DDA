@@ -4,6 +4,7 @@
 #include "character_martial_arts.h"
 #include "effect.h"
 #include "item.h"
+#include "itype.h"
 #include "magic.h"
 #include "npc.h"
 #include "npctalk.h"
@@ -27,6 +28,11 @@ talker_character::talker_character( Character *new_me )
 std::string talker_character_const::disp_name() const
 {
     return me_chr_const->disp_name();
+}
+
+std::string talker_character_const::get_name() const
+{
+    return me_chr_const->get_name();
 }
 
 character_id talker_character_const::getID() const
@@ -321,6 +327,16 @@ int talker_character_const::get_skill_level( const skill_id &skill ) const
 void talker_character::set_skill_level( const skill_id &skill, int value )
 {
     me_chr->set_skill_level( skill, value );
+}
+
+int talker_character_const::get_skill_exp( const skill_id &skill, bool raw ) const
+{
+    return me_chr_const->get_skill_level_object( skill ).exercise( raw );
+}
+
+void talker_character::set_skill_exp( const skill_id &skill, int value, bool raw )
+{
+    me_chr->get_skill_level_object( skill ).set_exercise( value, raw );
 }
 
 int talker_character_const::get_spell_level( const trait_id &spell_school ) const
@@ -665,6 +681,12 @@ bool talker_character_const::wielded_with_flag( const flag_id &flag ) const
     return me_chr_const->get_wielded_item() && me_chr_const->get_wielded_item()->has_flag( flag );
 }
 
+bool talker_character_const::wielded_with_weapon_category( const weapon_category_id &w_cat ) const
+{
+    return me_chr_const->get_wielded_item() &&
+           me_chr_const->get_wielded_item()->typeId()->weapon_category.count( w_cat ) > 0;
+}
+
 bool talker_character_const::has_item_with_flag( const flag_id &flag ) const
 {
     return me_chr_const->cache_has_item_with( flag );
@@ -847,6 +869,11 @@ int talker_character_const::get_age() const
 int talker_character_const::get_bmi_permil() const
 {
     return std::round( me_chr_const->get_bmi_fat() * 1000.0f );
+}
+
+int talker_character_const::get_weight() const
+{
+    return units::to_milligram( me_chr_const->get_weight() );
 }
 
 void talker_character::set_height( int amount )
