@@ -391,7 +391,7 @@ class Creature : public viewer
         /*@}*/
 
         /**
-         * How far the creature sees under the given light. Places outside this range can
+         * How far the creature sees under the given light. Creature cannot see places outside this range.
          * @param light_level See @ref game::light_level.
          */
         virtual int sight_range( float light_level ) const = 0;
@@ -539,8 +539,11 @@ class Creature : public viewer
         // returns true if the creature has an electric field
         virtual bool is_electrical() const = 0;
 
-        // returns true if the creature has an electric field
+        // returns true if the creature is from the nether
         virtual bool is_nether() const = 0;
+
+        // returns true if the creature has a sapient mind
+        virtual bool has_mind() const = 0;
 
         // returns true if health is zero or otherwise should be dead
         virtual bool is_dead_state() const = 0;
@@ -742,8 +745,20 @@ class Creature : public viewer
         virtual bool uncanny_dodge() {
             return false;
         }
+        void set_reachable_zone( int zone ) {
+            reachable_zone = zone;
+        }
+        int get_reachable_zone() const {
+            return reachable_zone;
+        }
 
     private:
+        /** This number establishes a partition of zones on the map that have shared
+         * reachability/visibility. In short, if you aren't in the same zone as some other monster,
+         * you can ignore them since you won't be able to reach them by any combination of
+         * regular movement and vision. **/
+        int reachable_zone = 0;
+
         /** The creature's position in absolute coordinates */
         tripoint_abs_ms location;
     protected:
