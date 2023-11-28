@@ -89,7 +89,7 @@
   {
     "type": "effect_on_condition",
     "id": "EOC_item_math_test_nested",
-    "effect": [ { "math": [ "n_hp()", "=", "100" ] } ]
+    "effect": [ { "math": [ "n_hp('ALL')", "=", "100" ] } ]
   },
   {
     "type": "effect_on_condition",
@@ -708,6 +708,23 @@
   },
   {
     "type": "effect_on_condition",
+    "id": "EOC_meta_test_message",
+    "effect": [ { "message": "message ok." } ]
+  },
+  {
+    "type": "effect_on_condition",
+    "id": "EOC_meta_test_talker_type",
+    "effect": [
+      { "if": "u_is_avatar", "then": { "set_string_var": "yes", "target_var": { "global_val": "key_avatar" } } },
+      { "if": "u_is_npc", "then": { "set_string_var": "yes", "target_var": { "global_val": "key_npc" } } },
+      { "if": "u_is_character", "then": { "set_string_var": "yes", "target_var": { "global_val": "key_character" } } },
+      { "if": "u_is_monster", "then": { "set_string_var": "yes", "target_var": { "global_val": "key_monster" } } },
+      { "if": "u_is_item", "then": { "set_string_var": "yes", "target_var": { "global_val": "key_item" } } },
+      { "if": "u_is_furniture", "then": { "set_string_var": "yes", "target_var": { "global_val": "key_furniture" } } }
+    ]
+  },
+  {
+    "type": "effect_on_condition",
     "id": "EOC_increment_var_var",
     "//": "tests adding a variable, that's in another variable",
     "effect": [
@@ -759,6 +776,15 @@
     "condition": { "u_know_recipe": "cattail_jelly" },
     "effect": { "u_forget_recipe": "cattail_jelly" },
     "false_effect": { "math": [ "fail_var", "=", "1" ] }
+  },
+  {
+    "type": "effect_on_condition",
+    "id": "EOC_map_test",
+    "effect": [
+      { "set_string_var": { "mutator": "loc_relative_u", "target": "(10,10,0)" }, "target_var": { "context_val": "loc" } },
+      { "math": [ "key_distance_loc", "=", "distance('u', _loc)" ] },
+      { "math": [ "key_distance_npc", "=", "distance('u', 'npc')" ] }
+    ]
   },
   {
     "type": "effect_on_condition",
