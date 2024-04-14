@@ -80,7 +80,7 @@ This monster can attempt a grab every ten turns, a leap with a maximum range of 
 
 These special attacks are mostly hardcoded in C++ and are generally not configurable with JSON (unless otherwise documented).  JSON-declared replacements are mentioned when available.
 
-- ```ABSORB_ITEMS``` Consumes objects it moves over to gain HP.  A movement cost per ml consumed can be enforced with `absorb_move_cost_per_ml` (default 0.025). The movement cost can have a minimum and maximum value specified by `absorb_move_cost_min` (default 1) and `absorb_move_cost_max` (default -1 for no limit). The volume in milliliters the monster must consume to gain 1 HP can be specified with `absorb_ml_per_hp` (default 250 ml). A list of materials that the monster can absorb can be specified with `absorb_materials` (can be string or string array, not specified = absorb all materials).
+- ```ABSORB_ITEMS``` Consumes objects it moves over to gain HP.  A movement cost per ml consumed can be enforced with `absorb_move_cost_per_ml` (default 0.025). The movement cost can have a minimum and maximum value specified by `absorb_move_cost_min` (default 1) and `absorb_move_cost_max` (default -1 for no limit). The volume in milliliters the monster must consume to gain 1 HP can be specified with `absorb_ml_per_hp` (default 250 ml). A list of materials that the monster can absorb can be specified with `absorb_materials` (can be string or string array, not specified = absorb all materials) and forbidden with `no_absorb_materials` (can be string or string array, not specified = absorb all materials specified by absorb_materials).
 - ```ABSORB_MEAT``` Absorbs adjacent meat items (maximum absorbable item volume depends on the monster's volume), regenerating health in the process.
 - ```ACID``` Spits acid.
 - ```ACID_ACCURATE``` Shoots acid that is accurate at long ranges, but less so up close.
@@ -304,8 +304,8 @@ Makes the monster leap a few tiles over passable terrain as long as it can see i
 | `prefer_leap`           | Leap even when adjacent to target, will still choose the closest acceptable destination.             |
 | `random_leap`           | Disregard target location entirely when leaping, leading to completely random jumps.                 |
 | `ignore_dest_terrain`   | Leap even if the destination is terrain that it doesn't usually move on.                             |
-| `ignore_dest_danger`    | Leap even if the destination is tiles that it would usually avoid, such fire, traps.                 |
-| `allow_no_target`       | Default `false` prevents monster from using the ability without a hostile target at its destination. |
+| `ignore_dest_danger`    | Leap even if the destination is tiles that it would usually avoid, such as fire or traps.            |
+| `allow_no_target`       | Default `false`.  Prevents the monster from using the ability without a hostile target at its destination.
 | `move_cost`             | Moves needed to complete special attack. 100 move_cost with 100 speed is equal to 1 second/turn.     |
 | `min_consider_range`    | Minimal distance to target to consider for using specific attack.                                    |
 | `max_consider_range`    | Maximal distance to target to consider for using specific attack.        

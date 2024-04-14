@@ -16,7 +16,7 @@
       "armor": { "bash": 4, "cut": 6, "bullet": 5 }
     },
     "bleed_rate": 50,
-    "upgrades": {  },
+    "upgrades": false,
     "special_attacks": [ [ "SMASH", 30 ] ],
     "extend": { "flags": [ "GROUP_BASH", "PUSH_MON", "PUSH_VEH" ] },
     "categories": [ "DINOSAUR" ]
@@ -39,7 +39,7 @@
       "armor": { "bash": 4, "cut": 6, "bullet": 5 }
     },
     "bleed_rate": 50,
-    "upgrades": {  },
+    "upgrades": false,
     "special_attacks": [ [ "SMASH", 30 ] ],
     "extend": { "flags": [ "GROUP_BASH", "PUSH_MON", "PUSH_VEH" ] },
     "categories": [ "DINOSAUR" ]
@@ -61,7 +61,7 @@
       "armor": { "bash": 4, "cut": 6, "bullet": 5 }
     },
     "bleed_rate": 50,
-    "upgrades": {  },
+    "upgrades": false,
     "special_attacks": [ [ "SMASH", 30 ] ],
     "extend": { "flags": [ "GROUP_BASH", "PUSH_MON", "PUSH_VEH" ] },
     "categories": [ "DINOSAUR" ]
@@ -83,7 +83,7 @@
       "armor": { "bash": 4, "cut": 6, "bullet": 5 }
     },
     "bleed_rate": 50,
-    "upgrades": {  },
+    "upgrades": false,
     "special_attacks": [ [ "SMASH", 30 ] ],
     "extend": { "flags": [ "GROUP_BASH", "PUSH_MON", "PUSH_VEH" ] },
     "categories": [ "DINOSAUR" ]
@@ -271,7 +271,7 @@
   {
     "type": "MONSTER",
     "id": "mon_zianzhousaurus_brute",
-    "name": { "str": "Qianzhousaurus chéngqiáng" },
+    "name": { "str_sp": "Qianzhousaurus chéngqiáng" },
     "copy-from": "mon_zianzhousaurus",
     "looks_like": "mon_zyrannosaurus",
     "description": "Massive jaws on a long snout lifted by an undead body bulging with distended muscles and swollen, festering wounds.",
@@ -376,7 +376,7 @@
       "armor": { "bash": 4, "cut": 6, "bullet": 5 }
     },
     "bleed_rate": 50,
-    "upgrades": {  },
+    "upgrades": false,
     "special_attacks": [ [ "SMASH", 30 ] ],
     "extend": { "flags": [ "GROUP_BASH", "PUSH_MON", "PUSH_VEH" ] },
     "categories": [ "DINOSAUR" ]
@@ -425,7 +425,7 @@
       "armor": { "bash": 4, "cut": 6, "bullet": 5 }
     },
     "bleed_rate": 50,
-    "upgrades": {  },
+    "upgrades": false,
     "special_attacks": [ [ "SMASH", 30 ] ],
     "extend": { "flags": [ "GROUP_BASH", "PUSH_MON", "PUSH_VEH" ] },
     "categories": [ "DINOSAUR" ]
@@ -447,7 +447,7 @@
       "armor": { "bash": 4, "cut": 6, "bullet": 5 }
     },
     "bleed_rate": 50,
-    "upgrades": {  },
+    "upgrades": false,
     "special_attacks": [ [ "SMASH", 30 ] ],
     "extend": { "flags": [ "GROUP_BASH", "PUSH_MON", "PUSH_VEH" ] },
     "categories": [ "DINOSAUR" ]
@@ -469,7 +469,7 @@
       "armor": { "bash": 4, "cut": 6, "bullet": 5 }
     },
     "bleed_rate": 50,
-    "upgrades": {  },
+    "upgrades": false,
     "special_attacks": [ [ "SMASH", 30 ] ],
     "extend": { "flags": [ "GROUP_BASH", "PUSH_MON", "PUSH_VEH" ] },
     "categories": [ "DINOSAUR" ]
@@ -491,7 +491,7 @@
       "armor": { "bash": 4, "cut": 6, "bullet": 5 }
     },
     "bleed_rate": 50,
-    "upgrades": {  },
+    "upgrades": false,
     "special_attacks": [ [ "SMASH", 30 ] ],
     "extend": { "flags": [ "GROUP_BASH", "PUSH_MON", "PUSH_VEH" ] },
     "categories": [ "DINOSAUR" ]
@@ -514,7 +514,7 @@
       "armor": { "bash": 4, "cut": 6, "bullet": 5 }
     },
     "bleed_rate": 50,
-    "upgrades": {  },
+    "upgrades": false,
     "special_attacks": [ [ "SMASH", 30 ] ],
     "extend": { "flags": [ "GROUP_BASH", "PUSH_MON", "PUSH_VEH" ] },
     "categories": [ "DINOSAUR" ]
@@ -536,7 +536,7 @@
       "armor": { "bash": 4, "cut": 6, "bullet": 5 }
     },
     "bleed_rate": 50,
-    "upgrades": {  },
+    "upgrades": false,
     "special_attacks": [ [ "SMASH", 30 ] ],
     "extend": { "flags": [ "GROUP_BASH", "PUSH_MON", "PUSH_VEH" ] },
     "categories": [ "DINOSAUR" ]
@@ -544,7 +544,7 @@
   {
     "type": "MONSTER",
     "id": "mon_zanchisaurus_brute",
-    "name": { "str": "American Ammo" },
+    "name": { "str_sp": "American Ammo" },
     "copy-from": "mon_zanchisaurus",
     "description": "Long-necked, four-legged dinosaur corpse.  Its entire body bulges with distended muscles and swollen, festering wounds.",
     "diff": 2,
@@ -558,7 +558,7 @@
       "armor": { "bash": 4, "cut": 6, "bullet": 5 }
     },
     "bleed_rate": 50,
-    "upgrades": {  },
+    "upgrades": false,
     "special_attacks": [ [ "SMASH", 30 ] ],
     "extend": { "flags": [ "GROUP_BASH", "PUSH_MON", "PUSH_VEH" ] },
     "categories": [ "DINOSAUR" ]
@@ -580,7 +580,7 @@
       "armor": { "bash": 4, "cut": 6, "bullet": 5 }
     },
     "bleed_rate": 50,
-    "upgrades": {  },
+    "upgrades": false,
     "special_attacks": [ [ "SMASH", 30 ] ],
     "extend": { "flags": [ "GROUP_BASH", "PUSH_MON", "PUSH_VEH" ] },
     "categories": [ "DINOSAUR" ]
@@ -602,7 +602,7 @@
       "armor": { "bash": 4, "cut": 6, "bullet": 5 }
     },
     "bleed_rate": 50,
-    "upgrades": {  },
+    "upgrades": false,
     "special_attacks": [ [ "SMASH", 30 ] ],
     "extend": { "flags": [ "GROUP_BASH", "PUSH_MON", "PUSH_VEH" ] },
     "categories": [ "DINOSAUR" ]
@@ -624,7 +624,7 @@
       "armor": { "bash": 4, "cut": 6, "bullet": 5 }
     },
     "bleed_rate": 50,
-    "upgrades": {  },
+    "upgrades": false,
     "special_attacks": [ [ "SMASH", 30 ] ],
     "extend": { "flags": [ "GROUP_BASH", "PUSH_MON", "PUSH_VEH" ] },
     "categories": [ "DINOSAUR" ]
@@ -646,7 +646,7 @@
       "armor": { "bash": 4, "cut": 6, "bullet": 5 }
     },
     "bleed_rate": 50,
-    "upgrades": {  },
+    "upgrades": false,
     "special_attacks": [ [ "SMASH", 30 ] ],
     "extend": { "flags": [ "GROUP_BASH", "PUSH_MON", "PUSH_VEH" ] },
     "categories": [ "DINOSAUR" ]
@@ -800,7 +800,7 @@
       "armor": { "bash": 4, "cut": 6, "bullet": 5 }
     },
     "bleed_rate": 50,
-    "upgrades": {  },
+    "upgrades": false,
     "special_attacks": [ [ "SMASH", 30 ] ],
     "extend": { "flags": [ "GROUP_BASH", "PUSH_MON", "PUSH_VEH" ] },
     "categories": [ "DINOSAUR" ]
@@ -822,7 +822,7 @@
       "armor": { "bash": 4, "cut": 6, "bullet": 5 }
     },
     "bleed_rate": 50,
-    "upgrades": {  },
+    "upgrades": false,
     "special_attacks": [ [ "SMASH", 30 ] ],
     "extend": { "flags": [ "GROUP_BASH", "PUSH_MON", "PUSH_VEH" ] },
     "categories": [ "DINOSAUR" ]
@@ -1086,7 +1086,7 @@
       "armor": { "bash": 4, "cut": 6, "bullet": 5 }
     },
     "bleed_rate": 50,
-    "upgrades": {  },
+    "upgrades": false,
     "special_attacks": [ [ "SMASH", 30 ] ],
     "extend": { "flags": [ "GROUP_BASH", "PUSH_MON", "PUSH_VEH" ] },
     "categories": [ "DINOSAUR" ]
@@ -1108,7 +1108,7 @@
       "armor": { "bash": 4, "cut": 6, "bullet": 5 }
     },
     "bleed_rate": 50,
-    "upgrades": {  },
+    "upgrades": false,
     "special_attacks": [ [ "SMASH", 30 ] ],
     "extend": { "flags": [ "GROUP_BASH", "PUSH_MON", "PUSH_VEH" ] },
     "categories": [ "DINOSAUR" ]
@@ -1130,7 +1130,29 @@
       "armor": { "bash": 4, "cut": 6, "bullet": 5 }
     },
     "bleed_rate": 50,
-    "upgrades": {  },
+    "upgrades": false,
+    "special_attacks": [ [ "SMASH", 30 ] ],
+    "extend": { "flags": [ "GROUP_BASH", "PUSH_MON", "PUSH_VEH" ] },
+    "categories": [ "DINOSAUR" ]
+  },
+  {
+    "type": "MONSTER",
+    "id": "mon_ziguanodon_brute",
+    "name": { "str": "Inevitable Iguanodon" },
+    "copy-from": "mon_ziguanodon",
+    "description": "A bulky, four-legged dinosaur with a beak and spiked thumbs, dead but walking, eyes vacant and swollen.  Its entire body bulges with distended muscles and swollen, festering wounds.",
+    "diff": 2,
+    "color": "red",
+    "proportional": { "hp": 1.5, "speed": 1.5 },
+    "relative": {
+      "melee_dice": 1,
+      "melee_dice_sides": 5,
+      "melee_damage": [ { "damage_type": "bash", "amount": 2 } ],
+      "vision_night": 1,
+      "armor": { "bash": 4, "cut": 6, "bullet": 5 }
+    },
+    "bleed_rate": 50,
+    "upgrades": false,
     "special_attacks": [ [ "SMASH", 30 ] ],
     "extend": { "flags": [ "GROUP_BASH", "PUSH_MON", "PUSH_VEH" ] },
     "categories": [ "DINOSAUR" ]
@@ -1152,7 +1174,7 @@
       "armor": { "bash": 4, "cut": 6, "bullet": 5 }
     },
     "bleed_rate": 50,
-    "upgrades": {  },
+    "upgrades": false,
     "special_attacks": [ [ "SMASH", 30 ] ],
     "extend": { "flags": [ "GROUP_BASH", "PUSH_MON", "PUSH_VEH" ] },
     "categories": [ "DINOSAUR" ]
@@ -1174,7 +1196,7 @@
       "armor": { "bash": 4, "cut": 6, "bullet": 5 }
     },
     "bleed_rate": 50,
-    "upgrades": {  },
+    "upgrades": false,
     "special_attacks": [ [ "SMASH", 30 ] ],
     "extend": { "flags": [ "GROUP_BASH", "PUSH_MON", "PUSH_VEH" ] },
     "categories": [ "DINOSAUR" ]
@@ -1196,7 +1218,7 @@
       "armor": { "bash": 4, "cut": 6, "bullet": 5 }
     },
     "bleed_rate": 50,
-    "upgrades": {  },
+    "upgrades": false,
     "special_attacks": [ [ "SMASH", 30 ] ],
     "extend": { "flags": [ "GROUP_BASH", "PUSH_MON", "PUSH_VEH" ] },
     "categories": [ "DINOSAUR" ]
@@ -1218,7 +1240,7 @@
       "armor": { "bash": 4, "cut": 6, "bullet": 5 }
     },
     "bleed_rate": 50,
-    "upgrades": {  },
+    "upgrades": false,
     "special_attacks": [ [ "SMASH", 30 ] ],
     "extend": { "flags": [ "GROUP_BASH", "PUSH_MON", "PUSH_VEH" ] },
     "categories": [ "DINOSAUR" ]
@@ -1240,7 +1262,7 @@
       "armor": { "bash": 4, "cut": 6, "bullet": 5 }
     },
     "bleed_rate": 50,
-    "upgrades": {  },
+    "upgrades": false,
     "special_attacks": [ [ "SMASH", 30 ] ],
     "extend": { "flags": [ "GROUP_BASH", "PUSH_MON", "PUSH_VEH" ] },
     "categories": [ "DINOSAUR" ]
@@ -1262,7 +1284,7 @@
       "armor": { "bash": 4, "cut": 6, "bullet": 5 }
     },
     "bleed_rate": 50,
-    "upgrades": {  },
+    "upgrades": false,
     "special_attacks": [ [ "SMASH", 30 ] ],
     "extend": { "flags": [ "GROUP_BASH", "PUSH_MON", "PUSH_VEH" ] },
     "categories": [ "DINOSAUR" ]
@@ -1284,7 +1306,7 @@
       "armor": { "bash": 4, "cut": 6, "bullet": 5 }
     },
     "bleed_rate": 50,
-    "upgrades": {  },
+    "upgrades": false,
     "special_attacks": [ [ "SMASH", 30 ] ],
     "extend": { "flags": [ "GROUP_BASH", "PUSH_MON", "PUSH_VEH" ] },
     "categories": [ "DINOSAUR" ]
@@ -1306,7 +1328,7 @@
       "armor": { "bash": 4, "cut": 6, "bullet": 5 }
     },
     "bleed_rate": 50,
-    "upgrades": {  },
+    "upgrades": false,
     "special_attacks": [ [ "SMASH", 30 ] ],
     "extend": { "flags": [ "GROUP_BASH", "PUSH_MON", "PUSH_VEH" ] },
     "categories": [ "DINOSAUR" ]
@@ -1328,7 +1350,7 @@
       "armor": { "bash": 4, "cut": 6, "bullet": 5 }
     },
     "bleed_rate": 50,
-    "upgrades": {  },
+    "upgrades": false,
     "special_attacks": [ [ "SMASH", 30 ] ],
     "extend": { "flags": [ "GROUP_BASH", "PUSH_MON", "PUSH_VEH" ] },
     "categories": [ "DINOSAUR" ]
@@ -1350,7 +1372,7 @@
       "armor": { "bash": 4, "cut": 6, "bullet": 5 }
     },
     "bleed_rate": 50,
-    "upgrades": {  },
+    "upgrades": false,
     "special_attacks": [ [ "SMASH", 30 ] ],
     "extend": { "flags": [ "GROUP_BASH", "PUSH_MON", "PUSH_VEH" ] },
     "categories": [ "DINOSAUR" ]
@@ -1372,7 +1394,7 @@
       "armor": { "bash": 4, "cut": 6, "bullet": 5 }
     },
     "bleed_rate": 50,
-    "upgrades": {  },
+    "upgrades": false,
     "special_attacks": [ [ "SMASH", 30 ] ],
     "extend": { "flags": [ "GROUP_BASH", "PUSH_MON", "PUSH_VEH" ] },
     "categories": [ "DINOSAUR" ]
@@ -1659,7 +1681,7 @@
       "armor": { "bash": 4, "cut": 6, "bullet": 5 }
     },
     "bleed_rate": 50,
-    "upgrades": {  },
+    "upgrades": false,
     "special_attacks": [ [ "SMASH", 30 ] ],
     "extend": { "flags": [ "GROUP_BASH", "PUSH_MON", "PUSH_VEH" ] },
     "categories": [ "DINOSAUR" ]
@@ -1681,7 +1703,7 @@
       "armor": { "bash": 4, "cut": 6, "bullet": 5 }
     },
     "bleed_rate": 50,
-    "upgrades": {  },
+    "upgrades": false,
     "special_attacks": [ [ "SMASH", 30 ] ],
     "extend": { "flags": [ "GROUP_BASH", "PUSH_MON", "PUSH_VEH" ] },
     "categories": [ "DINOSAUR" ]
@@ -1992,7 +2014,7 @@
       { "id": "bite_grab", "cooldown": 7 },
       [ "scratch", 20 ],
       [ "LUNGE", 5 ],
-      [ "LONGSWIPE", 25 ]
+      { "id": "longswipe", "cooldown": 25 }
     ],
     "burn_into": "mon_zalbertosaurus_scorched",
     "fungalize_into": "mon_zalbertosaurus_fungus",
@@ -2107,7 +2129,7 @@
     "id": "mon_zallimimus_shady",
     "name": { "str": "shady gallimimus zombie" },
     "color": "light_gray",
-    "description": "An uncanny shadow envelops this creature.  You can make out the outline of a bipedal dinosaur with feathery edges and a beak",
+    "description": "An uncanny shadow envelops this creature.  You can make out the outline of a bipedal dinosaur with feathery edges and a beak.",
     "upgrades": { "half_life": 15, "into": "mon_zallimimus_nightstalker" },
     "vision_day": 3,
     "vision_night": 40,
@@ -2156,7 +2178,6 @@
     "id": "mon_ztruthiomimus_shady",
     "name": { "str_sp": "shady struthiomimus zombie" },
     "copy-from": "mon_zallimimus_shady",
-    "description": "An uncanny shadow envelops this creature.  You can make out the outline of a bipedal dinosaur with feathery edges and a beak",
     "upgrades": { "half_life": 15, "into": "mon_ztruthiomimus_nightstalker" },
     "volume": "420 L",
     "weight": "420 kg",
@@ -2171,7 +2192,6 @@
     "id": "mon_zornithomimus_shady",
     "name": { "str_sp": "shady ornithomimus zombie" },
     "copy-from": "mon_zallimimus_shady",
-    "description": "An uncanny shadow envelops this creature.  You can make out the outline of a bipedal dinosaur with feathery edges and a beak",
     "upgrades": { "half_life": 15, "into": "mon_zornithomimus_nightstalker" },
     "volume": "170 L",
     "weight": "170 kg",
@@ -2198,7 +2218,7 @@
     "melee_dice": 3,
     "melee_dice_sides": 6,
     "hp": 320,
-    "special_attacks": [ [ "scratch", 10 ], { "id": "bite_grab" }, { "type": "bite", "cooldown": 10 }, [ "LONGSWIPE", 20 ] ],
+    "special_attacks": [ [ "scratch", 10 ], { "id": "bite_grab" }, { "type": "bite", "cooldown": 10 }, { "id": "longswipe", "cooldown": 20 } ],
     "burn_into": "mon_zerizinosaurus_scorched",
     "fungalize_into": "mon_zerizinosaurus_fungus",
     "categories": [ "DINOSAUR" ]
@@ -2218,7 +2238,7 @@
     "melee_dice": 4,
     "melee_dice_sides": 4,
     "hp": 160,
-    "special_attacks": [ [ "scratch", 10 ], { "id": "bite_grab" }, { "type": "bite", "cooldown": 5 }, [ "LONGSWIPE", 30 ] ],
+    "special_attacks": [ [ "scratch", 10 ], { "id": "bite_grab" }, { "type": "bite", "cooldown": 5 }, { "id": "longswipe", "cooldown": 30 } ],
     "burn_into": "mon_zothronychus_scorched",
     "fungalize_into": "mon_zothronychus_fungus",
     "categories": [ "DINOSAUR" ],
@@ -2238,7 +2258,7 @@
     "melee_dice": 4,
     "melee_dice_sides": 4,
     "hp": 120,
-    "special_attacks": [ [ "scratch", 10 ], { "id": "bite_grab" }, { "type": "bite", "cooldown": 5 }, [ "LONGSWIPE", 30 ] ],
+    "special_attacks": [ [ "scratch", 10 ], { "id": "bite_grab" }, { "type": "bite", "cooldown": 5 }, { "id": "longswipe", "cooldown": 30 } ],
     "burn_into": "mon_zanzu_scorched",
     "fungalize_into": "mon_zanzu_fungus",
     "categories": [ "DINOSAUR" ],
@@ -2403,7 +2423,7 @@
     "bleed_rate": 50,
     "special_attacks": [ [ "SMASH", 30 ] ],
     "extend": { "flags": [ "GROUP_BASH", "PUSH_MON", "PUSH_VEH" ] },
-    "upgrades": {  },
+    "upgrades": false,
     "categories": [ "DINOSAUR" ]
   },
   {
@@ -2425,7 +2445,7 @@
     "bleed_rate": 50,
     "special_attacks": [ [ "SMASH", 30 ] ],
     "extend": { "flags": [ "GROUP_BASH", "PUSH_MON", "PUSH_VEH" ] },
-    "upgrades": {  },
+    "upgrades": false,
     "categories": [ "DINOSAUR" ]
   },
   {
@@ -2447,7 +2467,7 @@
     "bleed_rate": 50,
     "special_attacks": [ [ "SMASH", 30 ] ],
     "extend": { "flags": [ "GROUP_BASH", "PUSH_MON", "PUSH_VEH" ] },
-    "upgrades": {  },
+    "upgrades": false,
     "categories": [ "DINOSAUR" ]
   },
   {
@@ -2469,7 +2489,7 @@
     "bleed_rate": 50,
     "special_attacks": [ [ "SMASH", 30 ] ],
     "extend": { "flags": [ "GROUP_BASH", "PUSH_MON", "PUSH_VEH" ] },
-    "upgrades": {  },
+    "upgrades": false,
     "categories": [ "DINOSAUR" ]
   },
   {
@@ -2491,7 +2511,7 @@
     "bleed_rate": 50,
     "special_attacks": [ [ "SMASH", 30 ] ],
     "extend": { "flags": [ "GROUP_BASH", "PUSH_MON", "PUSH_VEH" ] },
-    "upgrades": {  },
+    "upgrades": false,
     "categories": [ "DINOSAUR" ]
   },
   {
@@ -2513,7 +2533,7 @@
     "bleed_rate": 50,
     "special_attacks": [ [ "SMASH", 30 ] ],
     "extend": { "flags": [ "GROUP_BASH", "PUSH_MON", "PUSH_VEH" ] },
-    "upgrades": {  },
+    "upgrades": false,
     "categories": [ "DINOSAUR" ]
   },
   {
@@ -2535,7 +2555,7 @@
     "bleed_rate": 50,
     "special_attacks": [ [ "SMASH", 30 ] ],
     "extend": { "flags": [ "GROUP_BASH", "PUSH_MON", "PUSH_VEH" ] },
-    "upgrades": {  },
+    "upgrades": false,
     "categories": [ "DINOSAUR" ]
   },
   {
@@ -2557,7 +2577,7 @@
     "bleed_rate": 50,
     "special_attacks": [ [ "SMASH", 30 ] ],
     "extend": { "flags": [ "GROUP_BASH", "PUSH_MON", "PUSH_VEH" ] },
-    "upgrades": {  },
+    "upgrades": false,
     "categories": [ "DINOSAUR" ]
   },
   {
@@ -2579,7 +2599,7 @@
     "bleed_rate": 50,
     "special_attacks": [ [ "SMASH", 30 ] ],
     "extend": { "flags": [ "GROUP_BASH", "PUSH_MON", "PUSH_VEH" ] },
-    "upgrades": {  },
+    "upgrades": false,
     "categories": [ "DINOSAUR" ]
   },
   {
@@ -2601,7 +2621,7 @@
     "bleed_rate": 50,
     "special_attacks": [ [ "SMASH", 30 ] ],
     "extend": { "flags": [ "GROUP_BASH", "PUSH_MON", "PUSH_VEH" ] },
-    "upgrades": {  },
+    "upgrades": false,
     "categories": [ "DINOSAUR" ]
   },
   {
@@ -2623,7 +2643,7 @@
     "bleed_rate": 50,
     "special_attacks": [ [ "SMASH", 30 ] ],
     "extend": { "flags": [ "GROUP_BASH", "PUSH_MON", "PUSH_VEH" ] },
-    "upgrades": {  },
+    "upgrades": false,
     "categories": [ "DINOSAUR" ]
   },
   {
@@ -2645,7 +2665,7 @@
     "bleed_rate": 50,
     "special_attacks": [ [ "SMASH", 30 ] ],
     "extend": { "flags": [ "GROUP_BASH", "PUSH_MON", "PUSH_VEH" ] },
-    "upgrades": {  },
+    "upgrades": false,
     "categories": [ "DINOSAUR" ]
   },
   {
@@ -2667,7 +2687,7 @@
     "bleed_rate": 50,
     "special_attacks": [ [ "SMASH", 30 ] ],
     "extend": { "flags": [ "GROUP_BASH", "PUSH_MON", "PUSH_VEH" ] },
-    "upgrades": {  },
+    "upgrades": false,
     "categories": [ "DINOSAUR" ]
   },
   {
@@ -2689,7 +2709,7 @@
     "bleed_rate": 50,
     "special_attacks": [ [ "SMASH", 30 ] ],
     "extend": { "flags": [ "GROUP_BASH", "PUSH_MON", "PUSH_VEH" ] },
-    "upgrades": {  },
+    "upgrades": false,
     "categories": [ "DINOSAUR" ]
   },
   {
@@ -2711,7 +2731,7 @@
     "bleed_rate": 50,
     "special_attacks": [ [ "SMASH", 30 ] ],
     "extend": { "flags": [ "GROUP_BASH", "PUSH_MON", "PUSH_VEH" ] },
-    "upgrades": {  },
+    "upgrades": false,
     "categories": [ "DINOSAUR" ]
   },
   {
@@ -2733,7 +2753,7 @@
     "bleed_rate": 50,
     "special_attacks": [ [ "SMASH", 30 ] ],
     "extend": { "flags": [ "GROUP_BASH", "PUSH_MON", "PUSH_VEH" ] },
-    "upgrades": {  },
+    "upgrades": false,
     "categories": [ "DINOSAUR" ]
   },
   {
@@ -2741,8 +2761,6 @@
     "id": "mon_zallimimus_nightstalker",
     "name": { "str_sp": "gallimimus nightstalker" },
     "copy-from": "mon_zallimimus_shady",
-    "looks_like": "mon_zallimimus_shady",
-    "description": "An uncanny shadow envelops this creature.  You can make out the outline of a bulky bipedal dinosaur with feathery edges and a beak",
     "diff": 2,
     "proportional": { "hp": 1.5, "speed": 1.5 },
     "relative": {
@@ -2755,7 +2773,7 @@
     "bleed_rate": 50,
     "special_attacks": [ [ "SMASH", 30 ] ],
     "extend": { "flags": [ "GROUP_BASH", "PUSH_MON", "PUSH_VEH" ] },
-    "upgrades": {  },
+    "upgrades": false,
     "categories": [ "DINOSAUR" ]
   },
   {
@@ -2764,7 +2782,7 @@
     "name": { "str_sp": "struthiomimus nightstalker" },
     "copy-from": "mon_ztruthiomimus_shady",
     "looks_like": "mon_ztruthiomimus_shady",
-    "description": "An uncanny shadow envelops this creature.  You can make out the outline of a bulky bipedal dinosaur with feathery edges and a beak",
+    "description": "An uncanny shadow envelops this creature.  You can make out the outline of a bulky bipedal dinosaur with feathery edges and a beak.",
     "diff": 2,
     "proportional": { "hp": 1.5, "speed": 1.5 },
     "relative": {
@@ -2777,7 +2795,7 @@
     "bleed_rate": 50,
     "special_attacks": [ [ "SMASH", 30 ] ],
     "extend": { "flags": [ "GROUP_BASH", "PUSH_MON", "PUSH_VEH" ] },
-    "upgrades": {  },
+    "upgrades": false,
     "categories": [ "DINOSAUR" ]
   },
   {
@@ -2786,7 +2804,7 @@
     "name": { "str_sp": "ornithomimus nightstalker" },
     "copy-from": "mon_zornithomimus_shady",
     "looks_like": "mon_zornithomimus_shady",
-    "description": "An uncanny shadow envelops this creature.  You can make out the outline of a bulky bipedal dinosaur with feathery edges and a beak",
+    "description": "An uncanny shadow envelops this creature.  You can make out the outline of a bulky bipedal dinosaur with feathery edges and a beak.",
     "diff": 2,
     "proportional": { "hp": 1.5, "speed": 1.5 },
     "relative": {
@@ -2799,7 +2817,7 @@
     "bleed_rate": 50,
     "special_attacks": [ [ "SMASH", 30 ] ],
     "extend": { "flags": [ "GROUP_BASH", "PUSH_MON", "PUSH_VEH" ] },
-    "upgrades": {  },
+    "upgrades": false,
     "categories": [ "DINOSAUR" ]
   },
   {
@@ -2821,7 +2839,7 @@
     "bleed_rate": 50,
     "special_attacks": [ [ "SMASH", 30 ] ],
     "extend": { "flags": [ "GROUP_BASH", "PUSH_MON", "PUSH_VEH" ] },
-    "upgrades": {  },
+    "upgrades": false,
     "categories": [ "DINOSAUR" ]
   },
   {
@@ -2843,7 +2861,7 @@
     "bleed_rate": 50,
     "special_attacks": [ [ "SMASH", 30 ] ],
     "extend": { "flags": [ "GROUP_BASH", "PUSH_MON", "PUSH_VEH" ] },
-    "upgrades": {  },
+    "upgrades": false,
     "categories": [ "DINOSAUR" ]
   },
   {
@@ -2865,7 +2883,7 @@
     "bleed_rate": 50,
     "special_attacks": [ [ "SMASH", 30 ] ],
     "extend": { "flags": [ "GROUP_BASH", "PUSH_MON", "PUSH_VEH" ] },
-    "upgrades": {  },
+    "upgrades": false,
     "categories": [ "DINOSAUR" ]
   },
   {
@@ -2887,7 +2905,7 @@
     "bleed_rate": 50,
     "special_attacks": [ [ "SMASH", 30 ] ],
     "extend": { "flags": [ "GROUP_BASH", "PUSH_MON", "PUSH_VEH" ] },
-    "upgrades": {  },
+    "upgrades": false,
     "categories": [ "DINOSAUR" ]
   },
   {
@@ -2909,7 +2927,7 @@
     "bleed_rate": 50,
     "special_attacks": [ [ "SMASH", 30 ] ],
     "extend": { "flags": [ "GROUP_BASH", "PUSH_MON", "PUSH_VEH" ] },
-    "upgrades": {  },
+    "upgrades": false,
     "categories": [ "DINOSAUR" ]
   },
   {
@@ -2931,7 +2949,7 @@
     "bleed_rate": 50,
     "special_attacks": [ [ "SMASH", 30 ] ],
     "extend": { "flags": [ "GROUP_BASH", "PUSH_MON", "PUSH_VEH" ] },
-    "upgrades": {  },
+    "upgrades": false,
     "categories": [ "DINOSAUR" ]
   },
   {
@@ -2940,7 +2958,7 @@
     "name": { "str_sp": "thescelosaurus nightstalker" },
     "copy-from": "mon_zescelosaurus_shady",
     "looks_like": "mon_zescelosaurus_shady",
-    "description": "An uncanny shadow envelops this creature.  You can make out the outline of a bulky bipedal dinosaur with feathery edges and a beak",
+    "description": "An uncanny shadow envelops this creature.  You can make out the outline of a bulky bipedal dinosaur with feathery edges and a beak.",
     "diff": 2,
     "proportional": { "hp": 1.5, "speed": 1.5 },
     "relative": {
@@ -2953,7 +2971,7 @@
     "bleed_rate": 50,
     "special_attacks": [ [ "SMASH", 30 ] ],
     "extend": { "flags": [ "GROUP_BASH", "PUSH_MON", "PUSH_VEH" ] },
-    "upgrades": {  },
+    "upgrades": false,
     "categories": [ "DINOSAUR" ]
   },
   {
@@ -3154,7 +3172,7 @@
       { "id": "bite_grab", "cooldown": 7 },
       [ "scratch", 20 ],
       [ "LUNGE", 5 ],
-      [ "LONGSWIPE", 25 ]
+      { "id": "longswipe", "cooldown": 25 }
     ]
   },
   {
@@ -3346,7 +3364,7 @@
     },
     "bleed_rate": 50,
     "families": [ "prof_intro_biology", "prof_wp_zombie", "prof_wp_skeleton" ],
-    "upgrades": {  },
+    "upgrades": false,
     "extend": { "flags": [ "HARDTOSHOOT" ] },
     "harvest": "mr_bones",
     "categories": [ "DINOSAUR" ],
@@ -3370,7 +3388,7 @@
     },
     "bleed_rate": 50,
     "families": [ "prof_intro_biology", "prof_wp_zombie", "prof_wp_skeleton" ],
-    "upgrades": {  },
+    "upgrades": false,
     "extend": { "flags": [ "HARDTOSHOOT" ] },
     "harvest": "mr_bones",
     "categories": [ "DINOSAUR" ],
@@ -3394,7 +3412,7 @@
     },
     "bleed_rate": 50,
     "families": [ "prof_intro_biology", "prof_wp_zombie", "prof_wp_skeleton" ],
-    "upgrades": {  },
+    "upgrades": false,
     "extend": { "flags": [ "HARDTOSHOOT" ] },
     "harvest": "mr_bones",
     "categories": [ "DINOSAUR" ],
@@ -3418,7 +3436,7 @@
     },
     "bleed_rate": 50,
     "families": [ "prof_intro_biology", "prof_wp_zombie", "prof_wp_skeleton" ],
-    "upgrades": {  },
+    "upgrades": false,
     "extend": { "flags": [ "HARDTOSHOOT" ] },
     "harvest": "mr_bones",
     "categories": [ "DINOSAUR" ],
@@ -3442,7 +3460,7 @@
     },
     "bleed_rate": 50,
     "families": [ "prof_intro_biology", "prof_wp_zombie", "prof_wp_skeleton" ],
-    "upgrades": {  },
+    "upgrades": false,
     "extend": { "flags": [ "HARDTOSHOOT" ] },
     "harvest": "mr_bones",
     "categories": [ "DINOSAUR" ],
@@ -3466,7 +3484,7 @@
     },
     "bleed_rate": 50,
     "families": [ "prof_intro_biology", "prof_wp_zombie", "prof_wp_skeleton" ],
-    "upgrades": {  },
+    "upgrades": false,
     "extend": { "flags": [ "HARDTOSHOOT" ] },
     "harvest": "mr_bones",
     "categories": [ "DINOSAUR" ],
@@ -3498,7 +3516,7 @@
     },
     "bleed_rate": 50,
     "families": [ "prof_intro_biology", "prof_wp_zombie", "prof_wp_skeleton" ],
-    "upgrades": {  },
+    "upgrades": false,
     "extend": { "flags": [ "HARDTOSHOOT" ] },
     "harvest": "mr_bones",
     "categories": [ "DINOSAUR" ],
@@ -3522,7 +3540,7 @@
     },
     "bleed_rate": 50,
     "families": [ "prof_intro_biology", "prof_wp_zombie", "prof_wp_skeleton" ],
-    "upgrades": {  },
+    "upgrades": false,
     "extend": { "flags": [ "HARDTOSHOOT" ] },
     "harvest": "mr_bones",
     "categories": [ "DINOSAUR" ],
@@ -3562,7 +3580,7 @@
     },
     "bleed_rate": 50,
     "families": [ "prof_intro_biology", "prof_wp_zombie", "prof_wp_skeleton" ],
-    "upgrades": {  },
+    "upgrades": false,
     "extend": { "flags": [ "HARDTOSHOOT" ] },
     "harvest": "mr_bones",
     "categories": [ "DINOSAUR" ],
@@ -3586,7 +3604,7 @@
     },
     "bleed_rate": 50,
     "families": [ "prof_intro_biology", "prof_wp_zombie", "prof_wp_nat_armored", "prof_wp_skeleton" ],
-    "upgrades": {  },
+    "upgrades": false,
     "extend": { "flags": [ "HARDTOSHOOT" ] },
     "harvest": "mr_bones",
     "categories": [ "DINOSAUR" ],
@@ -3610,7 +3628,7 @@
     },
     "bleed_rate": 50,
     "families": [ "prof_intro_biology", "prof_wp_zombie", "prof_wp_nat_armored", "prof_wp_skeleton" ],
-    "upgrades": {  },
+    "upgrades": false,
     "extend": { "flags": [ "HARDTOSHOOT" ] },
     "harvest": "mr_bones",
     "categories": [ "DINOSAUR" ],
@@ -3634,7 +3652,7 @@
     },
     "bleed_rate": 50,
     "families": [ "prof_intro_biology", "prof_wp_zombie", "prof_wp_nat_armored", "prof_wp_skeleton" ],
-    "upgrades": {  },
+    "upgrades": false,
     "extend": { "flags": [ "HARDTOSHOOT" ] },
     "harvest": "mr_bones",
     "categories": [ "DINOSAUR" ],
@@ -3658,7 +3676,7 @@
     },
     "bleed_rate": 50,
     "families": [ "prof_intro_biology", "prof_wp_zombie", "prof_wp_nat_armored", "prof_wp_skeleton" ],
-    "upgrades": {  },
+    "upgrades": false,
     "extend": { "flags": [ "HARDTOSHOOT" ] },
     "harvest": "mr_bones",
     "categories": [ "DINOSAUR" ],
@@ -3682,7 +3700,7 @@
     },
     "bleed_rate": 50,
     "families": [ "prof_intro_biology", "prof_wp_zombie", "prof_wp_nat_armored", "prof_wp_skeleton" ],
-    "upgrades": {  },
+    "upgrades": false,
     "extend": { "flags": [ "HARDTOSHOOT" ] },
     "harvest": "mr_bones",
     "categories": [ "DINOSAUR" ],
@@ -3706,7 +3724,7 @@
     },
     "bleed_rate": 50,
     "families": [ "prof_intro_biology", "prof_wp_zombie", "prof_wp_nat_armored", "prof_wp_skeleton" ],
-    "upgrades": {  },
+    "upgrades": false,
     "extend": { "flags": [ "HARDTOSHOOT" ] },
     "harvest": "mr_bones",
     "categories": [ "DINOSAUR" ],
@@ -3730,7 +3748,7 @@
     },
     "bleed_rate": 50,
     "families": [ "prof_intro_biology", "prof_wp_zombie", "prof_wp_nat_armored", "prof_wp_skeleton" ],
-    "upgrades": {  },
+    "upgrades": false,
     "extend": { "flags": [ "HARDTOSHOOT" ] },
     "harvest": "mr_bones",
     "categories": [ "DINOSAUR" ],
@@ -3754,7 +3772,7 @@
     },
     "bleed_rate": 50,
     "families": [ "prof_intro_biology", "prof_wp_zombie", "prof_wp_nat_armored", "prof_wp_skeleton" ],
-    "upgrades": {  },
+    "upgrades": false,
     "extend": { "flags": [ "HARDTOSHOOT" ] },
     "harvest": "mr_bones",
     "categories": [ "DINOSAUR" ],
@@ -3778,7 +3796,7 @@
     },
     "bleed_rate": 50,
     "families": [ "prof_intro_biology", "prof_wp_zombie", "prof_wp_nat_armored", "prof_wp_skeleton" ],
-    "upgrades": {  },
+    "upgrades": false,
     "extend": { "flags": [ "HARDTOSHOOT" ] },
     "harvest": "mr_bones",
     "categories": [ "DINOSAUR" ],
@@ -3802,7 +3820,7 @@
     },
     "bleed_rate": 50,
     "families": [ "prof_intro_biology", "prof_wp_zombie", "prof_wp_nat_armored", "prof_wp_skeleton" ],
-    "upgrades": {  },
+    "upgrades": false,
     "extend": { "flags": [ "HARDTOSHOOT" ] },
     "harvest": "mr_bones",
     "categories": [ "DINOSAUR" ],
@@ -3827,7 +3845,7 @@
     },
     "bleed_rate": 50,
     "families": [ "prof_intro_biology", "prof_wp_zombie", "prof_wp_nat_armored", "prof_wp_skeleton" ],
-    "upgrades": {  },
+    "upgrades": false,
     "extend": { "flags": [ "HARDTOSHOOT" ] },
     "harvest": "mr_bones",
     "categories": [ "DINOSAUR" ],
@@ -3851,7 +3869,7 @@
     },
     "bleed_rate": 50,
     "families": [ "prof_intro_biology", "prof_wp_zombie", "prof_wp_nat_armored", "prof_wp_skeleton" ],
-    "upgrades": {  },
+    "upgrades": false,
     "extend": { "flags": [ "HARDTOSHOOT" ] },
     "harvest": "mr_bones",
     "categories": [ "DINOSAUR" ],
@@ -3875,7 +3893,7 @@
     },
     "bleed_rate": 50,
     "families": [ "prof_intro_biology", "prof_wp_zombie", "prof_wp_nat_armored", "prof_wp_skeleton" ],
-    "upgrades": {  },
+    "upgrades": false,
     "extend": { "flags": [ "HARDTOSHOOT" ] },
     "harvest": "mr_bones",
     "categories": [ "DINOSAUR" ],
@@ -3899,7 +3917,7 @@
     },
     "bleed_rate": 50,
     "families": [ "prof_intro_biology", "prof_wp_zombie", "prof_wp_skeleton" ],
-    "upgrades": {  },
+    "upgrades": false,
     "extend": { "flags": [ "HARDTOSHOOT" ] },
     "harvest": "mr_bones",
     "categories": [ "DINOSAUR" ],
@@ -3923,7 +3941,7 @@
     },
     "bleed_rate": 50,
     "families": [ "prof_intro_biology", "prof_wp_zombie", "prof_wp_skeleton" ],
-    "upgrades": {  },
+    "upgrades": false,
     "extend": { "flags": [ "HARDTOSHOOT" ] },
     "harvest": "mr_bones",
     "categories": [ "DINOSAUR" ],
@@ -3947,11 +3965,35 @@
     },
     "bleed_rate": 50,
     "families": [ "prof_intro_biology", "prof_wp_zombie", "prof_wp_skeleton" ],
-    "upgrades": {  },
+    "upgrades": false,
     "extend": { "flags": [ "HARDTOSHOOT" ] },
     "harvest": "mr_bones",
     "categories": [ "DINOSAUR" ],
     "armor": { "cut": 4, "bullet": 2, "bash": 0 }
+  },
+  {
+    "type": "MONSTER",
+    "id": "mon_siguanodon",
+    "name": { "str": "armored iguanodon" },
+    "copy-from": "mon_ziguanodon",
+    "color": "white",
+    "material": [ "bone" ],
+    "description": "This bulky, four-legged dinosaur corpse with a beak and spiked thumbs has grown dense bone armor.",
+    "proportional": { "hp": 0.4, "speed": 0.875 },
+    "relative": {
+      "melee_dice": 9,
+      "melee_dice_sides": 5,
+      "melee_damage": [ { "damage_type": "bash", "amount": 7 } ],
+      "vision_day": -20,
+      "armor": { "cut": 22, "stab": 30, "acid": 3, "bullet": 30 }
+    },
+    "bleed_rate": 50,
+    "families": [ "prof_intro_biology", "prof_wp_zombie", "prof_wp_skeleton" ],
+    "upgrades": false,
+    "extend": { "flags": [ "HARDTOSHOOT" ] },
+    "harvest": "mr_bones",
+    "categories": [ "DINOSAUR" ],
+    "armor": { "cut": 7, "bullet": 4, "bash": 0 }
   },
   {
     "type": "MONSTER",
@@ -3971,7 +4013,7 @@
     },
     "bleed_rate": 50,
     "families": [ "prof_intro_biology", "prof_wp_zombie", "prof_wp_skeleton" ],
-    "upgrades": {  },
+    "upgrades": false,
     "extend": { "flags": [ "HARDTOSHOOT" ] },
     "harvest": "mr_bones",
     "categories": [ "DINOSAUR" ],
@@ -3995,7 +4037,7 @@
     },
     "bleed_rate": 50,
     "families": [ "prof_intro_biology", "prof_wp_zombie", "prof_wp_skeleton" ],
-    "upgrades": {  },
+    "upgrades": false,
     "extend": { "flags": [ "HARDTOSHOOT" ] },
     "harvest": "mr_bones",
     "categories": [ "DINOSAUR" ],
@@ -4019,7 +4061,7 @@
     },
     "bleed_rate": 50,
     "families": [ "prof_intro_biology", "prof_wp_zombie", "prof_wp_skeleton" ],
-    "upgrades": {  },
+    "upgrades": false,
     "extend": { "flags": [ "HARDTOSHOOT" ] },
     "harvest": "mr_bones",
     "categories": [ "DINOSAUR" ],
@@ -4043,7 +4085,7 @@
     },
     "bleed_rate": 50,
     "families": [ "prof_intro_biology", "prof_wp_zombie", "prof_wp_skeleton" ],
-    "upgrades": {  },
+    "upgrades": false,
     "extend": { "flags": [ "HARDTOSHOOT" ] },
     "harvest": "mr_bones",
     "categories": [ "DINOSAUR" ],
@@ -4067,7 +4109,7 @@
     },
     "bleed_rate": 50,
     "families": [ "prof_intro_biology", "prof_wp_zombie", "prof_wp_skeleton" ],
-    "upgrades": {  },
+    "upgrades": false,
     "extend": { "flags": [ "HARDTOSHOOT" ] },
     "harvest": "mr_bones",
     "categories": [ "DINOSAUR" ],
@@ -4091,7 +4133,7 @@
     },
     "bleed_rate": 50,
     "families": [ "prof_intro_biology", "prof_wp_zombie", "prof_wp_skeleton" ],
-    "upgrades": {  },
+    "upgrades": false,
     "extend": { "flags": [ "HARDTOSHOOT" ] },
     "harvest": "mr_bones",
     "categories": [ "DINOSAUR" ],
@@ -4115,7 +4157,7 @@
     },
     "bleed_rate": 50,
     "families": [ "prof_intro_biology", "prof_wp_zombie", "prof_wp_skeleton" ],
-    "upgrades": {  },
+    "upgrades": false,
     "extend": { "flags": [ "HARDTOSHOOT" ] },
     "harvest": "mr_bones",
     "categories": [ "DINOSAUR" ],
@@ -4139,7 +4181,7 @@
     },
     "bleed_rate": 50,
     "families": [ "prof_intro_biology", "prof_wp_zombie", "prof_wp_skeleton" ],
-    "upgrades": {  },
+    "upgrades": false,
     "extend": { "flags": [ "HARDTOSHOOT" ] },
     "harvest": "mr_bones",
     "categories": [ "DINOSAUR" ],
@@ -4163,7 +4205,7 @@
     },
     "bleed_rate": 50,
     "families": [ "prof_intro_biology", "prof_wp_zombie", "prof_wp_skeleton" ],
-    "upgrades": {  },
+    "upgrades": false,
     "extend": { "flags": [ "HARDTOSHOOT" ] },
     "harvest": "mr_bones",
     "categories": [ "DINOSAUR" ],
@@ -4187,7 +4229,7 @@
     },
     "bleed_rate": 50,
     "families": [ "prof_intro_biology", "prof_wp_zombie", "prof_wp_skeleton" ],
-    "upgrades": {  },
+    "upgrades": false,
     "extend": { "flags": [ "HARDTOSHOOT" ] },
     "harvest": "mr_bones",
     "categories": [ "DINOSAUR" ],
@@ -4211,7 +4253,7 @@
     },
     "bleed_rate": 50,
     "families": [ "prof_intro_biology", "prof_wp_zombie", "prof_wp_skeleton" ],
-    "upgrades": {  },
+    "upgrades": false,
     "extend": { "flags": [ "HARDTOSHOOT" ] },
     "harvest": "mr_bones",
     "categories": [ "DINOSAUR" ],
@@ -4235,7 +4277,7 @@
     },
     "bleed_rate": 50,
     "families": [ "prof_intro_biology", "prof_wp_zombie", "prof_wp_skeleton" ],
-    "upgrades": {  },
+    "upgrades": false,
     "extend": { "flags": [ "HARDTOSHOOT" ] },
     "harvest": "mr_bones",
     "categories": [ "DINOSAUR" ],
@@ -4259,7 +4301,7 @@
     },
     "bleed_rate": 50,
     "families": [ "prof_intro_biology", "prof_wp_zombie", "prof_wp_skeleton" ],
-    "upgrades": {  },
+    "upgrades": false,
     "extend": { "flags": [ "HARDTOSHOOT" ] },
     "harvest": "mr_bones",
     "categories": [ "DINOSAUR" ],
@@ -4283,7 +4325,7 @@
     },
     "bleed_rate": 50,
     "families": [ "prof_intro_biology", "prof_wp_zombie", "prof_wp_skeleton" ],
-    "upgrades": {  },
+    "upgrades": false,
     "extend": { "flags": [ "HARDTOSHOOT" ] },
     "harvest": "mr_bones",
     "categories": [ "DINOSAUR" ],
@@ -4307,7 +4349,7 @@
     },
     "bleed_rate": 50,
     "families": [ "prof_intro_biology", "prof_wp_zombie", "prof_wp_skeleton" ],
-    "upgrades": {  },
+    "upgrades": false,
     "extend": { "flags": [ "HARDTOSHOOT" ] },
     "harvest": "mr_bones",
     "categories": [ "DINOSAUR" ],
@@ -4331,7 +4373,7 @@
     },
     "bleed_rate": 50,
     "families": [ "prof_intro_biology", "prof_wp_zombie", "prof_wp_skeleton" ],
-    "upgrades": {  },
+    "upgrades": false,
     "extend": { "flags": [ "HARDTOSHOOT" ] },
     "harvest": "mr_bones",
     "categories": [ "DINOSAUR" ],
@@ -4355,7 +4397,7 @@
     },
     "bleed_rate": 50,
     "families": [ "prof_intro_biology", "prof_wp_zombie", "prof_wp_skeleton" ],
-    "upgrades": {  },
+    "upgrades": false,
     "extend": { "flags": [ "HARDTOSHOOT" ] },
     "harvest": "mr_bones",
     "categories": [ "DINOSAUR" ],
@@ -4379,7 +4421,7 @@
     },
     "bleed_rate": 50,
     "families": [ "prof_intro_biology", "prof_wp_zombie", "prof_wp_skeleton" ],
-    "upgrades": {  },
+    "upgrades": false,
     "extend": { "flags": [ "HARDTOSHOOT" ] },
     "harvest": "mr_bones",
     "categories": [ "DINOSAUR" ],
@@ -4403,7 +4445,7 @@
     },
     "bleed_rate": 50,
     "families": [ "prof_intro_biology", "prof_wp_zombie", "prof_wp_skeleton" ],
-    "upgrades": {  },
+    "upgrades": false,
     "extend": { "flags": [ "HARDTOSHOOT" ] },
     "harvest": "mr_bones",
     "categories": [ "DINOSAUR" ],
@@ -4427,7 +4469,7 @@
     },
     "bleed_rate": 50,
     "families": [ "prof_intro_biology", "prof_wp_zombie", "prof_wp_skeleton" ],
-    "upgrades": {  },
+    "upgrades": false,
     "extend": { "flags": [ "HARDTOSHOOT" ] },
     "harvest": "mr_bones",
     "categories": [ "DINOSAUR" ],
@@ -4451,7 +4493,7 @@
     },
     "bleed_rate": 50,
     "families": [ "prof_intro_biology", "prof_wp_zombie", "prof_wp_skeleton" ],
-    "upgrades": {  },
+    "upgrades": false,
     "extend": { "flags": [ "HARDTOSHOOT" ] },
     "harvest": "mr_bones",
     "categories": [ "DINOSAUR" ],
@@ -4475,7 +4517,7 @@
     },
     "bleed_rate": 50,
     "families": [ "prof_intro_biology", "prof_wp_zombie", "prof_wp_skeleton" ],
-    "upgrades": {  },
+    "upgrades": false,
     "extend": { "flags": [ "HARDTOSHOOT" ] },
     "harvest": "mr_bones",
     "categories": [ "DINOSAUR" ],
@@ -4499,7 +4541,7 @@
     },
     "bleed_rate": 50,
     "families": [ "prof_intro_biology", "prof_wp_zombie", "prof_wp_skeleton" ],
-    "upgrades": {  },
+    "upgrades": false,
     "extend": { "flags": [ "HARDTOSHOOT" ] },
     "harvest": "mr_bones",
     "categories": [ "DINOSAUR" ],
@@ -4538,7 +4580,7 @@
     "extend": { "flags": [ "DRIPS_GASOLINE", "LOUDMOVES" ] },
     "special_attacks": [ { "id": "bite_grab", "cooldown": 30 }, [ "FLAMETHROWER", 30 ] ],
     "families": [ "prof_intro_biology", "prof_wp_zombie", "prof_wp_syn_armored" ],
-    "upgrades": {  },
+    "upgrades": false,
     "death_drops": [
       { "item": "wheel", "count": 4 },
       { "group": "supplies_spares_vehicle", "count": 10 },
@@ -4564,7 +4606,7 @@
     "extend": { "flags": [ "DRIPS_GASOLINE", "LOUDMOVES" ] },
     "special_attacks": [ { "id": "bite_grab", "cooldown": 30 }, [ "FLAMETHROWER", 30 ] ],
     "families": [ "prof_intro_biology", "prof_wp_zombie", "prof_wp_syn_armored" ],
-    "upgrades": {  },
+    "upgrades": false,
     "death_drops": [
       { "item": "wheel", "count": 4 },
       { "group": "supplies_spares_vehicle", "count": 10 },
@@ -4612,7 +4654,7 @@
       }
     ],
     "families": [ "prof_intro_biology", "prof_wp_zombie", "prof_wp_syn_armored" ],
-    "upgrades": {  },
+    "upgrades": false,
     "death_drops": [
       { "item": "mil_plate", "count": 4 },
       { "group": "helicopter", "count": 20 },
@@ -4659,7 +4701,7 @@
       }
     ],
     "families": [ "prof_intro_biology", "prof_wp_zombie", "prof_wp_syn_armored" ],
-    "upgrades": {  },
+    "upgrades": false,
     "death_drops": [
       { "item": "mil_plate", "count": 4 },
       { "group": "helicopter", "count": 20 },
@@ -4706,7 +4748,7 @@
       }
     ],
     "families": [ "prof_intro_biology", "prof_wp_zombie", "prof_wp_syn_armored" ],
-    "upgrades": {  },
+    "upgrades": false,
     "death_drops": [
       { "item": "mil_plate", "count": 4 },
       { "group": "helicopter", "count": 20 },
@@ -4728,7 +4770,7 @@
     "relative": { "melee_dice": 1, "melee_damage": -4, "armor": { "bash": 4, "cut": 6, "bullet": 5 } },
     "bleed_rate": 0,
     "special_attacks": [ [ "SMASH", 20 ] ],
-    "upgrades": {  }
+    "upgrades": false
   },
   {
     "type": "MONSTER",
@@ -4743,7 +4785,7 @@
     "relative": { "melee_dice": 1, "melee_damage": -4, "armor": { "bash": 4, "cut": 6, "bullet": 5 } },
     "bleed_rate": 0,
     "special_attacks": [ [ "SMASH", 20 ] ],
-    "upgrades": {  }
+    "upgrades": false
   },
   {
     "type": "MONSTER",
@@ -4758,7 +4800,7 @@
     "relative": { "melee_dice": 1, "melee_damage": -4, "armor": { "bash": 4, "cut": 6, "bullet": 5 } },
     "bleed_rate": 0,
     "special_attacks": [ [ "SMASH", 20 ] ],
-    "upgrades": {  }
+    "upgrades": false
   },
   {
     "type": "MONSTER",
@@ -4773,7 +4815,7 @@
     "relative": { "melee_dice": 1, "melee_damage": -4, "armor": { "bash": 4, "cut": 6, "bullet": 5 } },
     "bleed_rate": 0,
     "special_attacks": [ [ "SMASH", 20 ] ],
-    "upgrades": {  }
+    "upgrades": false
   },
   {
     "type": "MONSTER",
@@ -4788,7 +4830,7 @@
     "relative": { "melee_dice": 1, "melee_damage": -4, "armor": { "bash": 4, "cut": 6, "bullet": 5 } },
     "bleed_rate": 0,
     "special_attacks": [ [ "SMASH", 20 ] ],
-    "upgrades": {  }
+    "upgrades": false
   },
   {
     "type": "MONSTER",
@@ -4927,7 +4969,7 @@
   {
     "type": "MONSTER",
     "id": "mon_sallosaurus_brute",
-    "name": { "str": "skeletal allosaurusid brute" },
+    "name": { "str": "skeletal allosaurid brute" },
     "copy-from": "mon_sallosaurus",
     "description": "Distorted outgrowths of calcified bone plates cover this dinosaur's rotten flesh and toothy jaws.  Joints and cracks around its body ooze with black goo.",
     "proportional": { "hp": 5 },

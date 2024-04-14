@@ -14,6 +14,7 @@
     "connect_groups": "COUNTER",
     "connects_to": "COUNTER",
     "deconstruct": {
+      "skill": { "skill": "electronics", "multiplier": 0.5, "min": 1, "max": 4 },
       "furn_set": "f_counter",
       "items": [
         { "item": "processor", "count": [ 1, 2 ] },
@@ -64,6 +65,7 @@
     "connect_groups": "COUNTER",
     "connects_to": "COUNTER",
     "deconstruct": {
+      "skill": { "skill": "electronics", "min": 1, "max": 8 },
       "furn_set": "f_counter",
       "items": [
         { "item": "processor", "count": [ 1, 2 ] },
@@ -111,6 +113,7 @@
     "required_str": -1,
     "flags": [ "TRANSPARENT", "NOITEM", "INDOORS", "SHORT", "PERMEABLE" ],
     "deconstruct": {
+      "skill": { "skill": "electronics", "min": 1, "max": 8 },
       "furn_set": "f_table",
       "items": [
         { "item": "processor", "count": [ 1, 2 ] },
@@ -597,7 +600,7 @@
     "id": "f_scutch_breaker",
     "name": "stationary scutcher",
     "looks_like": "f_rack",
-    "description": "A bulky, simple-hinged wooden device to break up the hard parts of fibre plants, with nail combs on the back for separating them out.",
+    "description": "A bulky, simple-hinged wooden device to break up the hard parts of fiber plants, with nail combs on the back for separating them out.",
     "symbol": "=",
     "bgcolor": "brown",
     "move_cost_mod": 2,
