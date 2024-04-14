@@ -121,6 +121,13 @@
     "chance": 15
   },
   {
+    "id": "emit_smoke_leak",
+    "type": "emit",
+    "//": "Periodic leaking of smoke.",
+    "field": "fd_smoke",
+    "intensity": 3
+  },
+  {
     "id": "emit_tear_gas_leak",
     "type": "emit",
     "//": "Periodic leaking of tear gas",
