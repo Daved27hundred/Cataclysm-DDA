@@ -119,6 +119,18 @@
   },
   {
     "type": "SPELL",
+    "id": "smoker_stream_increase",
+    "name": { "str": "smoke billow" },
+    "description": "The monster produces large amounts of smoke for a short duration",
+    "flags": [ "NO_EXPLOSION_SFX" ],
+    "valid_targets": [ "self" ],
+    "effect": "emit",
+    "effect_str": "emit_smoke_stream",
+    "min_duration": 700,
+    "max_duration": 700
+  },
+  {
+    "type": "SPELL",
     "id": "small_raptor_spawn",
     "name": { "str": "Summon Raptors" },
     "description": "Summons a few zombiespawn raptors.",
