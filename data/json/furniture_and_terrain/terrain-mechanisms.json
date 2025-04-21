@@ -807,7 +807,7 @@
     "coverage": 50,
     "roof": "t_flat_roof",
     "connect_groups": "INDOORFLOOR",
-    "flags": [ "NOITEM", "INDOORS" ],
+    "flags": [ "NOITEM", "INDOORS", "FREE_TO_EXAMINE" ],
     "examine_action": "elevator",
     "bash": {
       "str_min": 40,
